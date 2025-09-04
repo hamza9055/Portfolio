@@ -11,6 +11,7 @@ import { Textarea } from '@/components/ui/textarea';
 import CvButton from '@/components/ui/cvButton';
 import Divider from '@/components/ui/divider';
 import { portfolioItems, Skills, timeline } from '@/components/data';
+import Link from 'next/link';
 
 export default function Portfolio() {
   const [activeSection, setActiveSection] = useState('home');
@@ -235,7 +236,7 @@ export default function Portfolio() {
       {/* Portfolio Section */}
       {
         activeSection === 'portfolio' && (
-          <section className="min-h-screen py-20 px-8 animate-fadeIn">
+          <section className="min-h-screen py-20 px-8 animate-fadeIn" id="portfolio">
             <div className="max-w-6xl mx-auto">
               <div className="text-center mb-16 animate-fadeInUp">
                 <h2 className="text-4xl lg:text-5xl font-bold mb-4">
@@ -262,15 +263,9 @@ export default function Portfolio() {
                         <div className="text-center text-white">
                           <h3 className="text-xl font-semibold mb-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">{item.title}</h3>
                           <div className="flex gap-4 justify-center transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 delay-100">
-                            <Button size="icon" variant="secondary" className="rounded-full hover:scale-110 transition-transform duration-300">
-                              <Github className="w-4 h-4" onClick={() => window.open(item.github, '_blank')}/>
+                            <Button onClick={() => window.open(`/projectInfo/${item.slug}`, '_blank')} className="rounded-full hover:scale-110 transition-transform duration-300">
+                              More info
                             </Button>
-                            <Button size="icon" variant="secondary" className="rounded-full hover:scale-110 transition-transform duration-300">
-                              <Globe className="w-4 h-4" onClick={() => window.open(item.link, '_blank')} />
-                            </Button>
-                            {/* <Button size="icon" variant="secondary" className="rounded-full hover:scale-110 transition-transform duration-300">
-                              <Youtube className="w-4 h-4" />
-                            </Button> */}
                           </div>
                         </div>
                       </div>
@@ -332,8 +327,8 @@ export default function Portfolio() {
                   <div>
                     <h3 className="text-2xl font-semibold mb-4">Get in touch</h3>
                     <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                      I'm always open to discussing new opportunities and interesting projects.
-                      Feel free to reach out if you'd like to work together!
+                      I&apos;m always open to discussing new opportunities and interesting projects.
+                      Feel free to reach out if you&apos;d like to work together!
                     </p>
                   </div>
 

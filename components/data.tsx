@@ -77,31 +77,116 @@ export const Skills = {
 }
 
 export const timeline = [
-  {
-    duration: 'Jan 2023 - Present',
-    title: 'Full Stack Developer',
-    company: 'ItTrends',
-    points: [
-      'Developed responsive UIs with React/TypeScript and optimized performance for cross-browser compatibility.',
-      'Built RESTful APIs in C# (.NET), integrated Azure Blob Storage, and enabled email workflows with Microsoft Graph API.',
-    ],
-  },
-  {
-    duration: 'Feb 2022 - Dec 2022',
-    title: 'Front End Developer',
-    company: 'OrderNation',
-    points: [
-      'Built responsive, mobile-friendly layouts for e-commerce platforms.',
-      'Implemented reusable UI components from design prototypes following best practices.',
-    ],
-  },
+    {
+        duration: 'Jan 2023 - Present',
+        title: 'Full Stack Developer',
+        company: 'ItTrends',
+        points: [
+            'Developed responsive UIs with React/TypeScript and optimized performance for cross-browser compatibility.',
+            'Built RESTful APIs in C# (.NET), integrated Azure Blob Storage, and enabled email workflows with Microsoft Graph API.',
+        ],
+    },
+    {
+        duration: 'Feb 2022 - Dec 2022',
+        title: 'Front End Developer',
+        company: 'OrderNation',
+        points: [
+            'Built responsive, mobile-friendly layouts for e-commerce platforms.',
+            'Implemented reusable UI components from design prototypes following best practices.',
+        ],
+    },
 ];
 
 export const portfolioItems = [
-    { id: 1, title: 'University Website', image: '/assets/projects/uniweb.png' , link: "https://university-website.vercel.app/" , github : "https://github.com/hamza9055/university-website" },
-    { id: 2, title: 'Task Management App', image: 'https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=800', link: "https://university-website.vercel.app/" , github : "https://github.com/hamza9055/university-website" },
-    { id: 3, title: 'Social Media Dashboard', image: 'https://images.pexels.com/photos/265087/pexels-photo-265087.jpeg?auto=compress&cs=tinysrgb&w=800', link: "https://university-website.vercel.app/" , github : "https://github.com/hamza9055/university-website" },
-    { id: 4, title: 'Weather App', image: 'https://images.pexels.com/photos/209831/pexels-photo-209831.jpeg?auto=compress&cs=tinysrgb&w=800', link: "https://university-website.vercel.app/" , github : "https://github.com/hamza9055/university-website" },
-    { id: 5, title: 'Blog Platform', image: 'https://images.pexels.com/photos/261662/pexels-photo-261662.jpeg?auto=compress&cs=tinysrgb&w=800' , link: "https://university-website.vercel.app/" , github : "https://github.com/hamza9055/university-website"},
-    { id: 6, title: 'Portfolio Website', image: 'https://images.pexels.com/photos/326502/pexels-photo-326502.jpeg?auto=compress&cs=tinysrgb&w=800' , link: "https://university-website.vercel.app/" , github : "https://github.com/hamza9055/university-website"},
-  ];
+    {
+        id: 1,
+        slug: 'university-website',
+        title: 'University Website',
+        image: '/assets/projects/uniweb.png',
+        link: "https://university-website.vercel.app/",
+        github: "https://github.com/hamza9055/university-website",
+        description: "This is a full-featured university portal website with course details, faculty pages, and event management.",
+        technologies: ["React", "Next.js", "TailwindCSS", "Node.js"],
+        points: [
+            "Course details and faculty pages",
+            "Event management system",
+            "Responsive mobile-first design",
+            "Integration with student login system"
+        ]
+    },
+    {
+        id: 2,
+        slug: 'registo',
+        title: 'Registo',
+        image: '/assets/projects/registo.png',
+        link: "https://registo.no/",
+        github: "",
+        description: "Business registration and management platform.",
+        technologies: ["React", "C#", ".NET", "SQL Server"],
+        points: [
+            "Secure user authentication",
+            "Business registration workflows",
+            "Admin panel with role-based access"
+        ]
+    },
+    {
+        id: 3,
+        slug: 'equinet',
+        title: 'Equinet',
+        image: '/assets/projects/equinet.png',
+        link: "https://equinet.no/",
+        github: "",
+        description: "Business registration and management platform.",
+        technologies: ["React", "C#", ".NET", "SQL Server"],
+        points: [
+            "Secure user authentication",
+            "Business registration workflows",
+            "Admin panel with role-based access"
+        ]
+    },
+    {
+        id: 4,
+        title: 'ItTrends',
+        slug: 'ittrends',
+        image: '/assets/projects/ittrends.png',
+        link: "https://www.ittrends.no/",
+        github: "",
+        description: "Business registration and management platform.",
+        technologies: ["React", "C#", ".NET", "SQL Server"],
+        points: [
+            "Secure user authentication",
+            "Business registration workflows",
+            "Admin panel with role-based access"
+        ]
+    },
+    {
+        id: 5,
+        slug: 'plusnor',
+        title: 'PlusNor',
+        image: '/assets/projects/plusnor.png',
+        link: "https://plusnor.no/",
+        github: "",
+        description: "Business registration and management platform.",
+        technologies: ["React", "C#", ".NET", "SQL Server"],
+        points: [
+            "Secure user authentication",
+            "Business registration workflows",
+            "Admin panel with role-based access"
+        ]
+    },
+    {
+        id: 6,
+        slug: 'portfolio-website',
+        title: 'Portfolio Website',
+        image: 'https://images.pexels.com/photos/326502/pexels-photo-326502.jpeg?auto=compress&cs=tinysrgb&w=800',
+        link: "https://university-website.vercel.app/",
+        github: "https://github.com/hamza9055/university-website",
+        description: "Business registration and management platform.",
+        technologies: ["React", "C#", ".NET", "SQL Server"],
+        points: [
+            "Secure user authentication",
+            "Business registration workflows",
+            "Admin panel with role-based access"
+        ]
+    },
+];

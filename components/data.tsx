@@ -71,6 +71,11 @@ export const Skills = {
             icon: "/assets/skills/rest-api.png",
             text: "REST APis"
         },
+        {
+            id: 12,
+            icon: "/assets/skills/sql.png",
+            text: "SQL Server"
+        },
 
     ],
 
@@ -97,6 +102,53 @@ export const timeline = [
     },
 ];
 
+export const education = [
+    {
+        id: 1,
+        year: '2025',
+        title: 'Bachelor of Science in Computer Science',
+        institution: 'Virtual University of Lahore',
+        location: 'Cairo, Egypt',
+    },
+    {
+        id: 2,
+        year: 'Mar 2022',
+        title: 'Responsive Web Design',
+        institution: 'freeCodeCamp',
+    },
+        {
+        id: 3,
+        year: 'May 2022',
+        title: 'JavaScript Modern Development',
+        institution: 'Udemy',
+    },
+        {
+        id: 4,
+        year: 'Feb 2023',
+        title: 'Front-End Development Libraries',
+        institution: 'freeCodeCamp',
+    }
+    ,    {
+        id: 5,
+        year: 'Feb 2023',
+        title: 'JavaScript Algorithms & Data Structures',
+        institution: 'freeCodeCamp',
+    }
+    ,
+        {
+        id: 6,
+        year: 'Dec 2023',
+        title: 'Introduction to Front End Development -',
+        institution: 'SimpliLearn',
+    },
+        {
+        id: 7,
+        year: 'Jan 2025',
+        title: 'Foundation C# with Microsoft',
+        institution: 'freeCodeCamp',
+    }
+];
+
 export const portfolioItems = [
     {
         id: 1,
@@ -106,7 +158,7 @@ export const portfolioItems = [
         link: "https://university-website.vercel.app/",
         github: "https://github.com/hamza9055/university-website",
         description: "This is a full-featured university portal website with course details, faculty pages, and event management.",
-        technologies: ["React", "Next.js", "TailwindCSS", "Node.js"],
+        technologies: ["HTML", "CSS", "JavaScript",],
         points: [
             "Course details and faculty pages",
             "Event management system",
@@ -122,7 +174,7 @@ export const portfolioItems = [
         link: "https://registo.no/",
         github: "",
         description: "Business registration and management platform.",
-        technologies: ["React", "C#", ".NET", "SQL Server"],
+        technologies: ["React", "TypeScript", "C#", ".NET", "SQL Server", "Ant Design", "Sass", "Azure", "REST APIs", 'SignalR','Azure Blob Storage'],
         points: [
             "Secure user authentication",
             "Business registration workflows",
@@ -137,7 +189,7 @@ export const portfolioItems = [
         link: "https://equinet.no/",
         github: "",
         description: "Business registration and management platform.",
-        technologies: ["React", "C#", ".NET", "SQL Server"],
+        technologies: ["React","TypeScript", "C#", ".NET", "SQL Server", "Ant Design", "Sass", "Azure", "REST APIs"],
         points: [
             "Secure user authentication",
             "Business registration workflows",
@@ -152,7 +204,7 @@ export const portfolioItems = [
         link: "https://www.ittrends.no/",
         github: "",
         description: "Business registration and management platform.",
-        technologies: ["React", "C#", ".NET", "SQL Server"],
+        technologies: ["Html", "Css", "JavaScript"],
         points: [
             "Secure user authentication",
             "Business registration workflows",
@@ -167,26 +219,26 @@ export const portfolioItems = [
         link: "https://plusnor.no/",
         github: "",
         description: "Business registration and management platform.",
-        technologies: ["React", "C#", ".NET", "SQL Server"],
+        technologies: ["Html", "Css", "JavaScript"],
         points: [
             "Secure user authentication",
             "Business registration workflows",
             "Admin panel with role-based access"
         ]
     },
-    {
-        id: 6,
-        slug: 'portfolio-website',
-        title: 'Portfolio Website',
-        image: 'https://images.pexels.com/photos/326502/pexels-photo-326502.jpeg?auto=compress&cs=tinysrgb&w=800',
-        link: "https://university-website.vercel.app/",
-        github: "https://github.com/hamza9055/university-website",
-        description: "Business registration and management platform.",
-        technologies: ["React", "C#", ".NET", "SQL Server"],
-        points: [
-            "Secure user authentication",
-            "Business registration workflows",
-            "Admin panel with role-based access"
-        ]
-    },
+    // {
+    //     id: 6,
+    //     slug: 'portfolio-website',
+    //     title: 'Portfolio Website',
+    //     image: 'https://images.pexels.com/photos/326502/pexels-photo-326502.jpeg?auto=compress&cs=tinysrgb&w=800',
+    //     link: "https://university-website.vercel.app/",
+    //     github: "https://github.com/hamza9055/university-website",
+    //     description: "Business registration and management platform.",
+    //     technologies: ["React", "C#", ".NET", "SQL Server"],
+    //     points: [
+    //         "Secure user authentication",
+    //         "Business registration workflows",
+    //         "Admin panel with role-based access"
+    //     ]
+    // },
 ];

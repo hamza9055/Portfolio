@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { Home, User, Briefcase, FileText, Mail, Download, Github, Youtube, Facebook, Twitter, MapPin, GraduationCap, Globe, Phone, Sun, Moon } from 'lucide-react';
+import { Home, User, Briefcase, FileText, Mail, Download, Github, Youtube, Facebook, Twitter, MapPin, GraduationCap, Globe, Phone, Sun, Moon, Linkedin, Code, Codepen } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -10,7 +10,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import CvButton from '@/components/ui/cvButton';
 import Divider from '@/components/ui/divider';
-import { portfolioItems, Skills, timeline } from '@/components/data';
+import { education, portfolioItems, Skills, timeline } from '@/components/data';
 import Link from 'next/link';
 
 export default function Portfolio() {
@@ -26,7 +26,7 @@ export default function Portfolio() {
     { id: 'home', icon: Home, label: 'Home' },
     { id: 'about', icon: User, label: 'About' },
     { id: 'portfolio', icon: Briefcase, label: 'Portfolio' },
-    { id: 'blogs', icon: FileText, label: 'Blogs' },
+    { id: 'education', icon: FileText, label: 'Education' },
     { id: 'contact', icon: Mail, label: 'Contact' },
   ];
 
@@ -184,7 +184,7 @@ export default function Portfolio() {
                 {Skills.hard.map((item, index) => (
 
 
-                  <div key={index} className='p-6 shadow-xl rounded-xl hover:scale-105 ease-in duration-300 dark:bg-orange-500/5'>
+                  <div key={index} className='p-6 shadow-xl rounded-xl hover:scale-105 ease-in duration-300 dark:bg-orange-500/5 flex'>
                     <div className='grid grid-cols-2 gap-4 justify-center items-center'>
                       <div className='m-auto'>
                         <Image src={item.icon} width='64' height='64' alt='' />
@@ -263,7 +263,11 @@ export default function Portfolio() {
                         <div className="text-center text-white">
                           <h3 className="text-xl font-semibold mb-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">{item.title}</h3>
                           <div className="flex gap-4 justify-center transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 delay-100">
-                            <Button onClick={() => window.open(`/projectInfo/${item.slug}`, '_blank')} className="rounded-full hover:scale-110 transition-transform duration-300">
+                            <Button onClick={() => {
+                              const theme = isDark ? "dark" : "light";
+                              window.open(`/projectInfo/${item.slug}?theme=${theme}`, "_blank");
+                            }}
+                              className="rounded-full hover:scale-110 transition-transform duration-300">
                               More info
                             </Button>
                           </div>
@@ -278,35 +282,76 @@ export default function Portfolio() {
         )
       }
 
-      {/* Blogs Section */}
+      {/* Education Section */}
       {
-        activeSection === 'blogs' && (
-          <section className="min-h-screen py-20 px-8 animate-fadeIn">
-            <div className="max-w-6xl mx-auto">
-              <div className="text-center mb-16 animate-fadeInUp">
-                <h2 className="text-4xl lg:text-5xl font-bold mb-4">
-                  My <span className="text-orange-500">Blogs</span>
-                </h2>
-                <div className="w-24 h-1 bg-orange-500 mx-auto animate-expandWidth"></div>
-              </div>
+        activeSection === 'education' && (
+                  <section className="min-h-screen py-20 px-8 animate-fadeIn">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16 animate-fadeInUp">
+              <h2 className="text-4xl lg:text-5xl font-bold mb-4 dark:text-gray-300">
+                My <span className="text-orange-500">Education</span>
+              </h2>
+              <div className="w-24 h-1 bg-orange-500 mx-auto animate-expandWidth"></div>
+            </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {blogs.map((blog, index) => (
-                  <Card key={index} className="overflow-hidden hover:shadow-xl transition-all duration-500 transform hover:-translate-y-4 animate-fadeInUp hover:shadow-orange-500/20 hover:scale-105 group" style={{ animationDelay: `${index * 200}ms` }}>
-                    <img
-                      src={blog.image}
-                      alt={blog.title}
-                      className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                    <CardContent className="p-6">
-                      <h3 className="text-xl font-semibold mb-3 group-hover:text-orange-500 transition-colors duration-300">{blog.title}</h3>
-                      <p className="text-gray-600 dark:text-gray-300 group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300">{blog.description}</p>
-                    </CardContent>
-                  </Card>
+
+            < Divider />
+            {/* Skills */}
+
+            < Divider />
+
+            {/* Timeline */}
+            <div>
+              <h3 className="text-2xl font-semibold mb-8 animate-fadeInUp dark:text-orange-500">My Timeline</h3>
+              <div className="space-y-8">
+                {education.map((item, index) => (
+                  <div key={index} className="flex gap-6 animate-slideInLeft" style={{ animationDelay: `${index * 200}ms` }}>
+                    <div className="flex flex-col items-center">
+                      <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center  hover:animate-spin transition-all duration-300">
+                        <Briefcase className="w-6 h-6 text-white" />
+                      </div>
+                      {index < timeline.length - 1 && <div className="w-0.5 h-20 bg-gray-300 dark:bg-gray-600 mt-4 animate-growHeight"></div>}
+                    </div>
+                    <div className="flex-1 pb-2">
+                      <Badge variant="secondary" className="mb-2">{item.year}</Badge>
+                      <h4 className="text-xl font-semibold mb-1 dark:text-gray-300">
+                        {item.title} <span className="text-orange-500 ">- {item.institution}</span>
+                      </h4>
+
+                    </div>
+                  </div>
                 ))}
               </div>
             </div>
-          </section>
+          </div>
+        </section>
+          // <section className="min-h-screen py-20 px-8 animate-fadeIn">
+            
+          //   <div className="max-w-6xl mx-auto">
+          //     <div className="text-center mb-16 animate-fadeInUp">
+          //       <h2 className="text-4xl lg:text-5xl font-bold mb-4">
+          //         My <span className="text-orange-500">Education</span>
+          //       </h2>
+          //       <div className="w-24 h-1 bg-orange-500 mx-auto animate-expandWidth"></div>
+          //     </div>
+
+          //     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          //       {blogs.map((blog, index) => (
+          //         <Card key={index} className="overflow-hidden hover:shadow-xl transition-all duration-500 transform hover:-translate-y-4 animate-fadeInUp hover:shadow-orange-500/20 hover:scale-105 group" style={{ animationDelay: `${index * 200}ms` }}>
+          //           <img
+          //             src={blog.image}
+          //             alt={blog.title}
+          //             className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+          //           />
+          //           <CardContent className="p-6">
+          //             <h3 className="text-xl font-semibold mb-3 group-hover:text-orange-500 transition-colors duration-300">{blog.title}</h3>
+          //             <p className="text-gray-600 dark:text-gray-300 group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300">{blog.description}</p>
+          //           </CardContent>
+          //         </Card>
+          //       ))}
+          //     </div>
+          //   </div>
+          // </section>
         )
       }
 
@@ -316,7 +361,7 @@ export default function Portfolio() {
           <section className="min-h-screen py-20 px-8 animate-fadeIn">
             <div className="max-w-6xl mx-auto">
               <div className="text-center mb-16 animate-fadeInUp">
-                <h2 className="text-4xl lg:text-5xl font-bold mb-4">
+                <h2 className="text-4xl lg:text-5xl font-bold mb-4 dark:text-gray-300">
                   Contact <span className="text-orange-500">Me</span>
                 </h2>
                 <div className="w-24 h-1 bg-orange-500 mx-auto animate-expandWidth"></div>
@@ -325,7 +370,7 @@ export default function Portfolio() {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                 <div className="space-y-8 animate-slideInLeft">
                   <div>
-                    <h3 className="text-2xl font-semibold mb-4">Get in touch</h3>
+                    <h3 className="text-2xl font-semibold mb-4 dark:text-orange-500">Get in touch</h3>
                     <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                       I&apos;m always open to discussing new opportunities and interesting projects.
                       Feel free to reach out if you&apos;d like to work together!
@@ -335,9 +380,9 @@ export default function Portfolio() {
                   <div className="space-y-4">
                     {[
                       { icon: MapPin, label: 'Location', value: 'Lahore, Pakistan' },
-                      { icon: Mail, label: 'Email', value: 'hamza@example.com' },
+                      { icon: Mail, label: 'Email', value: 'hamza.hamid9055@gmail.com' },
                       { icon: GraduationCap, label: 'Education', value: 'Computer Science Graduate' },
-                      { icon: Phone, label: 'Mobile', value: '+92 123 456 7890' },
+                      { icon: Phone, label: 'Mobile', value: '+92 315 4287721' },
                       { icon: Globe, label: 'Languages', value: 'English, Urdu' },
                     ].map((contact, index) => {
                       const Icon = contact.icon;
@@ -347,7 +392,7 @@ export default function Portfolio() {
                             <Icon className="w-5 h-5 text-orange-500" />
                           </div>
                           <div>
-                            <span className="font-medium">{contact.label}: </span>
+                            <span className="font-medium dark:text-orange-500">{contact.label}: </span>
                             <span className="text-gray-600 dark:text-gray-300">{contact.value}</span>
                           </div>
                         </div>
@@ -357,10 +402,11 @@ export default function Portfolio() {
 
                   <div className="flex gap-4">
                     {[
-                      { icon: Facebook, href: '#' },
-                      { icon: Twitter, href: '#' },
-                      { icon: Github, href: '#' },
-                      { icon: Youtube, href: '#' },
+                      // { icon: Facebook, href: '#' },
+                      { icon: Twitter, href: 'https://x.com/hamzahamid09' },
+                      { icon: Github, href: 'https://github.com/hamza9055' },
+                      { icon: Linkedin, href: 'https://www.linkedin.com/in/hamza-hamid9055/' },
+                      { icon: Codepen, href: 'https://codepen.io/hamza9055' },
                     ].map((social, index) => {
                       const Icon = social.icon;
                       return (
@@ -368,8 +414,9 @@ export default function Portfolio() {
                           key={index}
                           variant="outline"
                           size="icon"
-                          className="w-12 h-12 rounded-full hover:bg-orange-500 hover:text-white hover:border-orange-500 transition-all duration-300 hover:scale-110 hover:rotate-12 animate-fadeInUp"
+                          className="w-12 h-12 rounded-full dark:bg-orange-500 hover:bg-orange-500 hover:text-white hover:border-orange-500 transition-all duration-300 hover:scale-110 hover:rotate-12 animate-fadeInUp"
                           style={{ animationDelay: `${index * 100}ms` }}
+                          onClick={() => window.open(social.href, '_blank')}
                         >
                           <Icon className="w-5 h-5" />
                         </Button>
@@ -379,7 +426,7 @@ export default function Portfolio() {
                 </div>
 
                 <Card className="p-8 animate-slideInRight hover:shadow-xl transition-shadow duration-500 hover:shadow-orange-500/20">
-                  <form className="space-y-6">
+                  {/* <form className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <Input placeholder="Your Name" className="h-12 focus:scale-105 transition-transform duration-300" />
                       <Input type="email" placeholder="Your Email" className="h-12 focus:scale-105 transition-transform duration-300" />
@@ -389,7 +436,14 @@ export default function Portfolio() {
                     <Button className="w-full bg-orange-500 hover:bg-orange-600 text-white h-12 rounded-full hover:scale-105 transition-all duration-300 hover:shadow-lg hover:shadow-orange-500/30">
                       Send Message
                     </Button>
-                  </form>
+                  </form> */}
+                   <Image
+                            className="absolute z-1"
+                            src={'/assets/skills/dev.png'}
+                            alt={'/assets/dev.png'}
+                            fill
+                            style={{ objectFit: "cover" }}
+                          />
                 </Card>
               </div>
             </div>

@@ -157,13 +157,14 @@ export const portfolioItems = [
         image: '/assets/projects/uniweb.png',
         link: "https://university-website.vercel.app/",
         github: "https://github.com/hamza9055/university-website",
-        description: "This is a full-featured university portal website with course details, faculty pages, and event management.",
+        description: "A responsive front-end university website built with HTML, CSS, and JavaScript. It showcases course details, faculty profiles, and an event management section. Designed with clean UI, accessibility in mind, and optimized for both desktop and mobile devices.",
         technologies: ["HTML", "CSS", "JavaScript",],
         points: [
             "Course details and faculty pages",
             "Event management system",
             "Responsive mobile-first design",
-            "Integration with student login system"
+            "Responsive animations",
+            "Clean, modern UI" ,"Accessibility best practices"
         ]
     },
     {

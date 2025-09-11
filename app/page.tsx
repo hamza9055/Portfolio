@@ -105,7 +105,7 @@ export default function Portfolio() {
             <div className="order-2 lg:order-1 animate-slideInLeft">
               <div className="relative">
                 <Image
-                  src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=800"
+                  src="/assets/me.png"
                   alt="Hamza Hamid"
                   width={320}
                   height={320}
@@ -117,7 +117,7 @@ export default function Portfolio() {
               </div>
             </div>
             <div className="order-1 lg:order-2 space-y-6 animate-slideInRight">
-              <h1 className="text-gray-600 lg:text-6xl font-bold animate-fadeInUp">
+              <h1 className="text-gray-600 text-2xl lg:text-6xl font-bold animate-fadeInUp">
                 <span className='dark:text-gray-300'>Hi, I&apos;m </span><span className="text-orange-500">Hamza Hamid.</span>
                 <br />
                 <span className="text-3xl lg:text-4xl text-gray-600 dark:text-gray-300 animate-typewriter">A Web Developer.</span>
@@ -144,9 +144,12 @@ export default function Portfolio() {
               <div className="w-24 h-1 bg-orange-500 mx-auto animate-expandWidth"></div>
             </div>
 
-            <div className="grid grid-cols-1 lg:col-span-2 gap-12 mb-16">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+              {/* Left Side (Text Section) */}
               <div className="space-y-6 animate-slideInLeft">
-                <h3 className="text-2xl font-semibold dark:text-orange-500">Information About Me</h3>
+                <h3 className="text-2xl font-semibold dark:text-orange-500">
+                  Information About Me
+                </h3>
                 <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                   I&apos;m a dedicated web developer with a passion for creating exceptional digital experiences.
                   My journey in web development started several years ago, and I&apos;ve been constantly learning
@@ -159,22 +162,19 @@ export default function Portfolio() {
                 <CvButton />
               </div>
 
-              {/* <div className="grid grid-cols-2 gap-6 animate-slideInRight">
-                {[
-                  // { number: '50+', label: 'Projects Completed' },
-                  { number: '3+', label: 'Years of Experience' },
-                  // { number: '30+', label: 'Happy Clients' },
-                  // { number: '25+', label: 'Customer Reviews' },
-                ].map((stat, index) => (
-                  <Card key={index} className="p-6 text-center hover:shadow-lg transition-all duration-300 hover:scale-105 animate-fadeInUp hover:shadow-orange-500/20" style={{ animationDelay: `${100}ms` }}>
-                    <CardContent className="p-0">
-                      <h4 className="text-3xl font-bold text-orange-500 mb-2 animate-countUp">{stat.number}</h4>
-                      <p className="text-sm text-gray-600 dark:text-gray-300">{stat.label}</p>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div> */}
+              {/* Right Side (Image Section) */}
+              <div className="animate-slideInRight flex justify-center items-center">
+                <Image
+                  src="/assets/aboutMe.png"
+                  alt="Developer illustration"
+                  width={500}
+                  height={500}
+                  className="rounded-2xl object-cover hover:shadow-xl transition-shadow duration-500 hover:shadow-orange-500/20"
+                  priority
+                />
+              </div>
             </div>
+
 
             < Divider />
             {/* Skills */}
@@ -250,7 +250,7 @@ export default function Portfolio() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {portfolioItems.map((item, index) => (
-                  <Card key={item.id} className="group overflow-hidden hover:shadow-xl transition-all duration-500 transform hover:-translate-y-4 animate-fadeInUp hover:shadow-orange-500/20 hover:scale-105" style={{ animationDelay: `${index * 150}ms` }}>
+                  <Card key={item.id} className="group overflow-hidden hover:shadow-xl transition-all duration-700 transform hover:-translate-y-4  animate-fadeInUp hover:shadow-orange-500/20 hover:scale-105" style={{ animationDelay: `${index * 300}ms` }}>
                     <div className="relative overflow-hidden">
                       <Image
                         src={item.image}
@@ -285,48 +285,44 @@ export default function Portfolio() {
       {/* Education Section */}
       {
         activeSection === 'education' && (
-                  <section className="min-h-screen py-20 px-8 animate-fadeIn">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16 animate-fadeInUp">
-              <h2 className="text-4xl lg:text-5xl font-bold mb-4 dark:text-gray-300">
-                My <span className="text-orange-500">Education</span>
-              </h2>
-              <div className="w-24 h-1 bg-orange-500 mx-auto animate-expandWidth"></div>
-            </div>
+          <section className="min-h-screen py-20 px-8 animate-fadeIn">
+            <div className="max-w-6xl mx-auto">
+              <div className="text-center mb-16 animate-fadeInUp">
+                <h2 className="text-4xl lg:text-5xl font-bold mb-4 dark:text-gray-300">
+                  My <span className="text-orange-500">Education</span>
+                </h2>
+                <div className="w-24 h-1 bg-orange-500 mx-auto animate-expandWidth"></div>
+              </div>
 
 
-            < Divider />
-            {/* Skills */}
 
-            < Divider />
-
-            {/* Timeline */}
-            <div>
-              <h3 className="text-2xl font-semibold mb-8 animate-fadeInUp dark:text-orange-500">My Timeline</h3>
-              <div className="space-y-8">
-                {education.map((item, index) => (
-                  <div key={index} className="flex gap-6 animate-slideInLeft" style={{ animationDelay: `${index * 200}ms` }}>
-                    <div className="flex flex-col items-center">
-                      <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center  hover:animate-spin transition-all duration-300">
-                        <Briefcase className="w-6 h-6 text-white" />
+              {/* Timeline */}
+              <div>
+                <h3 className="text-2xl font-semibold mb-8 animate-fadeInUp dark:text-orange-500">My Education & Certifications</h3>
+                <div className="space-y-8">
+                  {education.map((item, index) => (
+                    <div key={index} className="flex gap-6 " style={{ animationDelay: `${index * 200}ms` }}>
+                      <div className="flex flex-col items-center">
+                        <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center  hover:animate-spin transition-all duration-300">
+                          <Briefcase className="w-6 h-6 text-white" />
+                        </div>
+                        {index < timeline.length - 1 && <div className="w-0.5 h-20 bg-gray-300 dark:bg-gray-600 mt-4 animate-growHeight"></div>}
                       </div>
-                      {index < timeline.length - 1 && <div className="w-0.5 h-20 bg-gray-300 dark:bg-gray-600 mt-4 animate-growHeight"></div>}
-                    </div>
-                    <div className="flex-1 pb-2">
-                      <Badge variant="secondary" className="mb-2">{item.year}</Badge>
-                      <h4 className="text-xl font-semibold mb-1 dark:text-gray-300">
-                        {item.title} <span className="text-orange-500 ">- {item.institution}</span>
-                      </h4>
+                      <div className="flex-1 pb-2">
+                        <Badge variant="secondary" className="mb-2">{item.year}</Badge>
+                        <h4 className="text-xl font-semibold mb-1 dark:text-gray-300">
+                          {item.title} <span className="text-orange-500 ">- {item.institution}</span>
+                        </h4>
 
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
           // <section className="min-h-screen py-20 px-8 animate-fadeIn">
-            
+
           //   <div className="max-w-6xl mx-auto">
           //     <div className="text-center mb-16 animate-fadeInUp">
           //       <h2 className="text-4xl lg:text-5xl font-bold mb-4">
@@ -391,7 +387,7 @@ export default function Portfolio() {
                           <div className="w-10 h-10 bg-orange-500/20 rounded-full flex items-center justify-center hover:bg-orange-500/30 transition-colors duration-300 hover:rotate-12">
                             <Icon className="w-5 h-5 text-orange-500" />
                           </div>
-                          <div>
+                          <div className='flex justify-between w-full'>
                             <span className="font-medium dark:text-orange-500">{contact.label}: </span>
                             <span className="text-gray-600 dark:text-gray-300">{contact.value}</span>
                           </div>
@@ -437,13 +433,13 @@ export default function Portfolio() {
                       Send Message
                     </Button>
                   </form> */}
-                   <Image
-                            className="absolute z-1"
-                            src={'/assets/skills/dev.png'}
-                            alt={'/assets/dev.png'}
-                            fill
-                            style={{ objectFit: "cover" }}
-                          />
+                  <Image
+                    className="absolute z-1"
+                    src={'/assets/skills/dev.png'}
+                    alt={'/assets/dev.png'}
+                    fill
+                    style={{ objectFit: "cover" }}
+                  />
                 </Card>
               </div>
             </div>

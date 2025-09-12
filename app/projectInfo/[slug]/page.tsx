@@ -1,33 +1,36 @@
-
-
 import { portfolioItems } from "@/components/data";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import Link from "next/link";
 import { RiRadioButtonFill } from "react-icons/ri";
+import { notFound } from "next/navigation";
 
-
+// ✅ Generate all project slugs for static export
 export async function generateStaticParams() {
   return portfolioItems.map((item) => ({
     slug: item.slug,
   }));
 }
 
-const ProjectInfo = ({ params, searchParams }
-  : {
-    searchParams: { theme: string }, params: { slug: string }
-  }) => {
-
-  const theme = searchParams.theme; // 👈 get ?theme=dark here
+const ProjectInfo = ({
+  params,
+  searchParams,
+}: {
+  searchParams?: { theme?: string };
+  params: { slug: string };
+}) => {
+  const theme = searchParams?.theme || "dark"; // default if no query param
 
   const project = portfolioItems.find((item) => item.slug === params.slug);
-  if (!project) return <div>Project not found</div>;
+
+  // ✅ Proper 404 handling
+  if (!project) return notFound();
 
   return (
-    <div className={`w-full min-h-screen transition-colors duration-500 ${theme === "dark" ? "dark bg-gray-900" : "bg-gray-50"
-      }`}>
-
-
+    <div
+      className={`w-full min-h-screen transition-colors duration-500 ${
+        theme === "dark" ? "dark bg-gray-900" : "bg-gray-50"
+      }`}
+    >
       {/* Hero Image with overlay */}
       <div className="w-screen h-[40vh] relative">
         <div className="absolute top-0 left-0 w-full h-[40vh] bg-black/60 z-10" />
@@ -39,7 +42,7 @@ const ProjectInfo = ({ params, searchParams }
           style={{ objectFit: "cover" }}
         />
         <div className="absolute top-[70%] max-w-[1240px] w-full left-1/2 -translate-x-1/2 -translate-y-1/2 text-white z-10 p-2">
-          <h2 className="text-4xl font-bold py-2 ">{project.title}</h2>
+          <h2 className="text-4xl font-bold py-2">{project.title}</h2>
         </div>
       </div>
 
@@ -71,7 +74,9 @@ const ProjectInfo = ({ params, searchParams }
         {/* Right Section - Tech Stack */}
         <div className="col-span-4 md:col-span-1 shadow-xl shadow-gray-400 rounded-xl py-4 dark:shadow-gray-700">
           <div className="p-2">
-            <p className="text-center font-bold pb-2 text-orange-500">Technologies</p>
+            <p className="text-center font-bold pb-2 text-orange-500">
+              Technologies
+            </p>
             <div className="grid grid-cols-3 md:grid-cols-1">
               {project.technologies?.map((tech) => (
                 <p
@@ -84,11 +89,6 @@ const ProjectInfo = ({ params, searchParams }
             </div>
           </div>
         </div>
-
-
-        {/* <Link href="/#portfolio">
-          <p className="underline cursor-pointer dark:text-gray-300">Back</p>
-        </Link> */}
       </div>
     </div>
   );

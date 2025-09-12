@@ -116,32 +116,32 @@ export const education = [
         title: 'Responsive Web Design',
         institution: 'freeCodeCamp',
     },
-        {
+    {
         id: 3,
         year: 'May 2022',
         title: 'JavaScript Modern Development',
         institution: 'Udemy',
     },
-        {
+    {
         id: 4,
         year: 'Feb 2023',
         title: 'Front-End Development Libraries',
         institution: 'freeCodeCamp',
     }
-    ,    {
+    , {
         id: 5,
         year: 'Feb 2023',
         title: 'JavaScript Algorithms & Data Structures',
         institution: 'freeCodeCamp',
     }
     ,
-        {
+    {
         id: 6,
         year: 'Dec 2023',
         title: 'Introduction to Front End Development -',
         institution: 'SimpliLearn',
     },
-        {
+    {
         id: 7,
         year: 'Jan 2025',
         title: 'Foundation C# with Microsoft',
@@ -164,7 +164,7 @@ export const portfolioItems = [
             "Event management system",
             "Responsive mobile-first design",
             "Responsive animations",
-            "Clean, modern UI" ,"Accessibility best practices"
+            "Clean, modern UI", "Accessibility best practices"
         ]
     },
     {
@@ -175,7 +175,7 @@ export const portfolioItems = [
         link: "https://registo.no/",
         github: "",
         description: "Business registration and management platform.",
-        technologies: ["React", "TypeScript", "C#", ".NET", "SQL Server", "Ant Design", "Sass", "Azure", "REST APIs", 'SignalR','Azure Blob Storage'],
+        technologies: ["React", "TypeScript", "C#", ".NET", "SQL Server", "Ant Design", "Sass", "Azure", "REST APIs", 'SignalR', 'Azure Blob Storage'],
         points: [
             "Secure user authentication",
             "Business registration workflows",
@@ -190,7 +190,7 @@ export const portfolioItems = [
         link: "https://equinet.no/",
         github: "",
         description: "Business registration and management platform.",
-        technologies: ["React","TypeScript", "C#", ".NET", "SQL Server", "Ant Design", "Sass", "Azure", "REST APIs"],
+        technologies: ["React", "TypeScript", "C#", ".NET", "SQL Server", "Ant Design", "Sass", "Azure", "REST APIs"],
         points: [
             "Secure user authentication",
             "Business registration workflows",

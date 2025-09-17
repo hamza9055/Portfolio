@@ -88,6 +88,7 @@ const config: Config = {
             transform: 'translateY(0)',
             opacity: '1',
           },
+          
         },
       },
       animation: {

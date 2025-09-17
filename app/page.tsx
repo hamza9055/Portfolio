@@ -12,11 +12,14 @@ import CvButton from '@/components/ui/cvButton';
 import Divider from '@/components/ui/divider';
 import { education, portfolioItems, Skills, timeline } from '@/components/data';
 import Link from 'next/link';
+import { RiRadioButtonFill } from 'react-icons/ri';
 
 export default function Portfolio() {
   const [activeSection, setActiveSection] = useState('home');
   const [isDark, setIsDark] = useState(true);
   const [isLoaded, setIsLoaded] = useState(false);
+  type PortfolioItem = typeof portfolioItems[number];
+  const [selectedProject, setSelectedProject] = useState<PortfolioItem | null>(portfolioItems[0]);
 
   useEffect(() => {
     setIsLoaded(true);
@@ -184,7 +187,7 @@ export default function Portfolio() {
                 {Skills.hard.map((item, index) => (
 
 
-                  <div key={index} className='p-6 shadow-xl rounded-xl hover:scale-105 ease-in duration-300 dark:bg-orange-500/5 flex'>
+                  <div key={index} className='p-6 shadow-xl rounded-xl hover:scale-105 ease-in duration-300 dark:bg-orange-500/5 flex animate-fadeIn animate-fadeInUp'>
                     <div className='grid grid-cols-2 gap-4 justify-center items-center'>
                       <div className='m-auto'>
                         <Image src={item.icon} width='64' height='64' alt='' />
@@ -239,7 +242,7 @@ export default function Portfolio() {
           <section className="min-h-screen py-20 px-8 animate-fadeIn" id="portfolio">
             <div className="max-w-6xl mx-auto">
               <div className="text-center mb-16 animate-fadeInUp">
-                <h2 className="text-4xl lg:text-5xl font-bold mb-4">
+                <h2 className="text-4xl lg:text-5xl font-bold mb-4 dark:text-gray-300">
                   My <span className="text-orange-500">Portfolio</span>
                 </h2>
                 <div className="w-24 h-1 bg-orange-500 mx-auto mb-6 animate-expandWidth"></div>
@@ -248,35 +251,97 @@ export default function Portfolio() {
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {portfolioItems.map((item, index) => (
-                  <Card key={item.id} className="group overflow-hidden hover:shadow-xl transition-all duration-700 transform hover:-translate-y-4  animate-fadeInUp hover:shadow-orange-500/20 hover:scale-105" style={{ animationDelay: `${index * 300}ms` }}>
-                    <div className="relative overflow-hidden">
-                      <Image
-                        src={item.image}
-                        alt={item.title}
-                        width={400}
-                        height={192}
-                        className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-125 "
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center">
-                        <div className="text-center text-white">
-                          <h3 className="text-xl font-semibold mb-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">{item.title}</h3>
-                          <div className="flex gap-4 justify-center transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 delay-100">
-                            <Button onClick={() => {
-                              const theme = isDark ? "dark" : "light";
-                              window.open(`/projectInfo/${item.slug}?theme=${theme}`, "_blank");
-                            }}
-                              className="rounded-full hover:scale-110 transition-transform duration-300">
-                              More info
-                            </Button>
-                          </div>
+              <div className="flex flex-col lg:flex-row gap-8">
+  
+                <div className="flex flex-col gap-6">
+                  {portfolioItems.map((item) => (
+                    <Card
+                      key={item.id}
+                      onClick={() => setSelectedProject(item)}
+                      className=" animate-slideInLeft cursor-pointer group overflow-hidden hover:shadow-xl transition-all duration-700 transform hover:-translate-y-2 hover:scale-105"
+                    >
+                      <div className="relative overflow-hidden">
+                        <Image
+                          src={item.image}
+                          alt={item.title}
+                          width={400}
+                          height={192}
+                          className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-125"
+                        />
+                        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center">
+                          <h3 className="text-white text-lg font-semibold">{item.title}</h3>
                         </div>
                       </div>
+                    </Card>
+                  ))}
+                </div>
+                <div className="lg:w-1/2 p-4 bg-gray-100 dark:bg-gray-800 rounded-xl animate-slideInRight">
+                  {selectedProject != null ? (
+                    <div 
+                      key={selectedProject?.id || "empty"}
+                    className='animate-fadeInUp'>
+                      <p className="text-gray-600 dark:text-gray-300">Project</p>
+                      <h2 className="text-4xl font-bold text-orange-500">Overview</h2>
+                      <p className="text-gray-700 dark:text-gray-300 mt-4">{selectedProject.description}</p>
+                      <div className=" relative">
+                        <div className="absolute top-0 left-0 w-full h-[-webkit-fill-available] bg-black/30 z-10 rounded-xl" />
+                        <Image
+                          src={selectedProject.image}
+                          alt={selectedProject.title}
+                          width={600}
+                          height={300}
+                          className="rounded-xl mt-4 object-cover "
+                        />
+
+                      </div>
+                      <div className=" z-10 p-2">
+                        <h2 className="text-xl font-bold py-2 dark:text-gray-300">{selectedProject.title}</h2>
+                      </div>
+                      <div className="flex flex-col lg:flex-row gap-8 justify-between">
+                              <div className="">
+                                {selectedProject.points?.map((point, index) => (
+                                  <p key={index} className="mt-4 flex items-center dark:text-gray-300">
+                                    <RiRadioButtonFill className="pr-1" /> {point}
+                                  </p>
+                                ))}
+                      
+                                {selectedProject.github && (
+                                  <a href={selectedProject.github} target="_blank" rel="noreferrer">
+                                    <Button className="px-8 py-2 mt-4 mr-8 bg-orange-500">Code</Button>
+                                  </a>
+                                )}
+                                {selectedProject.link && (
+                                  <a href={selectedProject.link} target="_blank" rel="noreferrer">
+                                    <Button className="px-8 py-2 mt-4 bg-orange-500">Demo</Button>
+                                  </a>
+                                )}
+                              </div>
+                      
+                              <div className="  shadow-xl shadow-gray-400 rounded-xl py-4 dark:shadow-gray-700">
+                                <div className="p-4">
+                                  <p className="text-center font-bold pb-2 text-orange-500">
+                                    Technologies
+                                  </p>
+                                  <div className="flex md:flex-col flex-row flex-wrap justify-around">
+                                    {selectedProject.technologies?.map((tech) => (
+                                      <p
+                                        key={tech}
+                                        className="text-gray-600 dark:text-gray-300 py-2 flex items-center"
+                                      >
+                                        <RiRadioButtonFill className="pr-1" /> {tech}
+                                      </p>
+                                    ))}
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
                     </div>
-                  </Card>
-                ))}
+                  ) : (
+                    <p className="text-gray-500 dark:text-gray-400">Select a project to see details</p>
+                  )}
+                </div>
               </div>
+
             </div>
           </section>
         )

@@ -174,12 +174,20 @@ export const portfolioItems = [
         image: '/assets/projects/registo.png',
         link: "https://registo.no/",
         github: "",
-        description: "Business registration and management platform.",
+        description: "Accounting Task Management Platform. Built a scalable, multi-tenant system for managing business clients, featuring contract e-signing, automated task scheduling (e.g., VAT filing, payroll), and client-specific accounting workflows.",
         technologies: ["React", "TypeScript", "C#", ".NET", "SQL Server", "Ant Design", "Sass", "Azure", "REST APIs", 'SignalR', 'Azure Blob Storage'],
         points: [
+            "Admin panel with role-based access",
             "Secure user authentication",
             "Business registration workflows",
-            "Admin panel with role-based access"
+            "contract e-signing",
+            "automated task scheduling (e.g., VAT filing, payroll)",
+            "SignalR for real-time updates",
+            "real time masesaging",
+            "outlook integration",
+            "blob storage integration",
+
+
         ]
     },
     {
@@ -189,12 +197,17 @@ export const portfolioItems = [
         image: '/assets/projects/equinet.png',
         link: "https://equinet.no/",
         github: "",
-        description: "Business registration and management platform.",
+        description: "Service that brings horse trainers, riding schools, and students together. Implemented features like lesson scheduling, trainer/student dashboards, course management, chat, and Stripe-based payments.",
         technologies: ["React", "TypeScript", "C#", ".NET", "SQL Server", "Ant Design", "Sass", "Azure", "REST APIs"],
         points: [
-            "Secure user authentication",
-            "Business registration workflows",
-            "Admin panel with role-based access"
+            "Role-based access",
+            "Stripe payments",
+            "product management",
+            "trainer/student/Shool dashboard",
+            "finance management",
+            "horse management",
+            "lesson scheduling",
+            "chat feature",
         ]
     },
     {

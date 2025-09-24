@@ -33,39 +33,6 @@ export default function Portfolio() {
     { id: 'contact', icon: Mail, label: 'Contact' },
   ];
 
-  // const skills = [
-  //   { name: 'HTML 5', percentage: 90 },
-  //   { name: 'CSS 3', percentage: 95 },
-  //   { name: 'JavaScript', percentage: 60 },
-  //   { name: 'ReactJS', percentage: 75 },
-  //   { name: 'NodeJS', percentage: 50 },
-  //   { name: 'Python', percentage: 70 },
-  // ];
-
-
-
-
-
-
-
-  const blogs = [
-    {
-      title: 'How to Build Modern Web Applications',
-      description: 'Learn the latest techniques for building scalable web applications.',
-      image: 'https://images.pexels.com/photos/11035380/pexels-photo-11035380.jpeg?auto=compress&cs=tinysrgb&w=800',
-    },
-    {
-      title: 'The Future of Frontend Development',
-      description: 'Exploring upcoming trends and technologies in frontend development.',
-      image: 'https://images.pexels.com/photos/574071/pexels-photo-574071.jpeg?auto=compress&cs=tinysrgb&w=800',
-    },
-    {
-      title: 'Best Practices for React Development',
-      description: 'Tips and tricks for writing clean, maintainable React code.',
-      image: 'https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&w=800',
-    },
-  ];
-
   return (
     <div className={`min-h-screen transition-all duration-500 ${isDark ? 'dark bg-gray-900' : 'bg-gray-50'} ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
       {/* Navigation Controls */}
@@ -126,8 +93,8 @@ export default function Portfolio() {
                 <span className="text-3xl lg:text-4xl text-gray-600 dark:text-gray-300 animate-typewriter">A Web Developer.</span>
               </h1>
               <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed  animation-delay-300">
-                I&apos;m a passionate Web Developer who loves creating beautiful and functional websites.
-                I specialize in modern web technologies and enjoy bringing creative ideas to life through code.
+               I&apos;m a passionate Web Developer who loves creating beautiful and functional websites. I specialize in modern web technologies like React, Next.js, and .NET, and I enjoy bringing creative ideas to life through code.
+
               </p>
 
               <CvButton />
@@ -154,14 +121,8 @@ export default function Portfolio() {
                   Information About Me
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                  I&apos;m a dedicated web developer with a passion for creating exceptional digital experiences.
-                  My journey in web development started several years ago, and I&apos;ve been constantly learning
-                  and evolving with the latest technologies.
-                </p>
-                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                  I believe in writing clean, maintainable code and creating user-friendly interfaces that
-                  not only look great but also provide excellent user experiences.
-                </p>
+                  I am a Full-Stack Web Developer with 2+ years of experience in React.js, Next.js, TypeScript, and C# (ASP.NET). Skilled in building scalable web applications, I work with RESTful APIs, SQL databases, Azure services, Microsoft Graph APIs, and SignalR for real-time communication. I focus on writing clean, maintainable code and creating responsive, user-friendly interfaces that deliver excellent experiences.
+                  </p>
                 <CvButton />
               </div>
 
@@ -252,7 +213,7 @@ export default function Portfolio() {
               </div>
 
               <div className="flex flex-col lg:flex-row gap-8">
-  
+
                 <div className="flex flex-col gap-6">
                   {portfolioItems.map((item) => (
                     <Card
@@ -277,9 +238,9 @@ export default function Portfolio() {
                 </div>
                 <div className="lg:w-1/2 p-4 bg-gray-100 dark:bg-gray-800 rounded-xl animate-slideInRight">
                   {selectedProject != null ? (
-                    <div 
+                    <div
                       key={selectedProject?.id || "empty"}
-                    className='animate-fadeInUp'>
+                      className='animate-fadeInUp'>
                       <p className="text-gray-600 dark:text-gray-300">Project</p>
                       <h2 className="text-4xl font-bold text-orange-500">Overview</h2>
                       <p className="text-gray-700 dark:text-gray-300 mt-4">{selectedProject.description}</p>
@@ -298,43 +259,43 @@ export default function Portfolio() {
                         <h2 className="text-xl font-bold py-2 dark:text-gray-300">{selectedProject.title}</h2>
                       </div>
                       <div className="flex flex-col lg:flex-row gap-8 justify-between">
-                              <div className="">
-                                {selectedProject.points?.map((point, index) => (
-                                  <p key={index} className="mt-4 flex items-center dark:text-gray-300">
-                                    <RiRadioButtonFill className="pr-1" /> {point}
-                                  </p>
-                                ))}
-                      
-                                {selectedProject.github && (
-                                  <a href={selectedProject.github} target="_blank" rel="noreferrer">
-                                    <Button className="px-8 py-2 mt-4 mr-8 bg-orange-500">Code</Button>
-                                  </a>
-                                )}
-                                {selectedProject.link && (
-                                  <a href={selectedProject.link} target="_blank" rel="noreferrer">
-                                    <Button className="px-8 py-2 mt-4 bg-orange-500">Demo</Button>
-                                  </a>
-                                )}
-                              </div>
-                      
-                              <div className="  shadow-xl shadow-gray-400 rounded-xl py-4 dark:shadow-gray-700">
-                                <div className="p-4">
-                                  <p className="text-center font-bold pb-2 text-orange-500">
-                                    Technologies
-                                  </p>
-                                  <div className="flex md:flex-col flex-row flex-wrap justify-around">
-                                    {selectedProject.technologies?.map((tech) => (
-                                      <p
-                                        key={tech}
-                                        className="text-gray-600 dark:text-gray-300 py-2 flex items-center"
-                                      >
-                                        <RiRadioButtonFill className="pr-1" /> {tech}
-                                      </p>
-                                    ))}
-                                  </div>
-                                </div>
-                              </div>
+                        <div className="">
+                          {selectedProject.points?.map((point, index) => (
+                            <p key={index} className="mt-4 flex items-center dark:text-gray-300">
+                              <RiRadioButtonFill className="pr-1" /> {point}
+                            </p>
+                          ))}
+
+                          {selectedProject.github && (
+                            <a href={selectedProject.github} target="_blank" rel="noreferrer">
+                              <Button className="px-8 py-2 mt-4 mr-8 bg-orange-500">Code</Button>
+                            </a>
+                          )}
+                          {selectedProject.link && (
+                            <a href={selectedProject.link} target="_blank" rel="noreferrer">
+                              <Button className="px-8 py-2 mt-4 bg-orange-500">Demo</Button>
+                            </a>
+                          )}
+                        </div>
+
+                        <div className="  shadow-xl shadow-gray-400 rounded-xl py-4 dark:shadow-gray-700">
+                          <div className="p-4">
+                            <p className="text-center font-bold pb-2 text-orange-500">
+                              Technologies
+                            </p>
+                            <div className="flex md:flex-col flex-row flex-wrap justify-around">
+                              {selectedProject.technologies?.map((tech) => (
+                                <p
+                                  key={tech}
+                                  className="text-gray-600 dark:text-gray-300 py-2 flex items-center"
+                                >
+                                  <RiRadioButtonFill className="pr-1" /> {tech}
+                                </p>
+                              ))}
                             </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   ) : (
                     <p className="text-gray-500 dark:text-gray-400">Select a project to see details</p>
@@ -386,7 +347,7 @@ export default function Portfolio() {
               </div>
             </div>
             <div>
-              
+
             </div>
           </section>
           // <section className="min-h-screen py-20 px-8 animate-fadeIn">
@@ -451,7 +412,7 @@ export default function Portfolio() {
                     ].map((contact, index) => {
                       const Icon = contact.icon;
                       return (
-                        <div key={index} className="flex items-center gap-4 animate-fadeInUp hover:scale-105 transition-transform duration-300" style={{ animationDelay: `${index * 100}ms` }}>
+                        <div key={index} className="flex items-center gap-4 animate-slideInLeft hover:scale-105 transition-transform duration-300" style={{ animationDelay: `${index * 100}ms` }}>
                           <div className="w-10 h-10 bg-orange-500/20 rounded-full flex items-center justify-center hover:bg-orange-500/30 transition-colors duration-300 hover:rotate-12">
                             <Icon className="w-5 h-5 text-orange-500" />
                           </div>

@@ -211,35 +211,38 @@ export const portfolioItems = [
         ]
     },
     {
-        id: 4,
-        title: 'ItTrends',
-        slug: 'ittrends',
-        image: '/assets/projects/ittrends.png',
-        link: "https://www.ittrends.no/",
-        github: "",
-        description: "Business registration and management platform.",
-        technologies: ["Html", "Css", "JavaScript"],
-        points: [
-            "Secure user authentication",
-            "Business registration workflows",
-            "Admin panel with role-based access"
-        ]
-    },
-    {
-        id: 5,
-        slug: 'plusnor',
-        title: 'PlusNor',
-        image: '/assets/projects/plusnor.png',
-        link: "https://plusnor.no/",
-        github: "",
-        description: "Business registration and management platform.",
-        technologies: ["Html", "Css", "JavaScript"],
-        points: [
-            "Secure user authentication",
-            "Business registration workflows",
-            "Admin panel with role-based access"
-        ]
-    },
+    id: 4,
+    title: 'ItTrends',
+    slug: 'ittrends',
+    image: '/assets/projects/ittrends.png',
+    link: "https://www.ittrends.no/",
+    github: "",
+    description: "A professional company website built for an IT services firm. Developed a modern business platform showcasing services, portfolio, and contact information. Implemented responsive design with smooth animations using Bootstrap and Tiny Slider.",
+    technologies: ["HTML", "CSS", "JavaScript", "Bootstrap", "Tiny Slider"],
+    points: [
+        "Responsive company profile website",
+        "Service and portfolio showcase",
+        "Smooth slider animations with Tiny Slider",
+        "Built with Bootstrap for grid and components",
+    ]
+},
+{
+    id: 5,
+    slug: 'plusnor',
+    title: 'PlusNor',
+    image: '/assets/projects/plusnor.png',
+    link: "https://plusnor.no/",
+    github: "",
+    description: "Corporate website for an accounting firm. Designed to highlight services, build client trust, and provide easy contact access. Fully responsive, mobile-friendly layout with engaging slider animations.",
+    technologies: ["HTML", "CSS", "JavaScript", "Bootstrap", "Tiny Slider"],
+    points: [
+        "Responsive and mobile-friendly design",
+        "Business service showcase",
+        "Integrated slider animations",
+        "Modern, clean UI with Bootstrap",
+    ]
+}
+
     // {
     //     id: 6,
     //     slug: 'portfolio-website',

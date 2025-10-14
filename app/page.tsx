@@ -218,7 +218,7 @@ export default function Portfolio() {
       {/* Portfolio Section */}
       {
         activeSection === 'portfolio' && (
-          <section className="min-h-screen py-20 px-8 animate-fadeIn" id="portfolio">
+          <section className="min-h-screen py-20 px-8 animate-fadeIn h-full"  id="portfolio">
             <div className="max-w-6xl mx-auto">
               <div className="text-center mb-16 animate-fadeInUp">
                 <h2 className="text-4xl lg:text-5xl font-bold mb-4 dark:text-gray-300">
@@ -269,11 +269,11 @@ export default function Portfolio() {
 
                         {/* Drawer panel */}
                         <motion.div
-                          initial={{ x: "100%", opacity: 0 }}
+                          initial={{ x: "-100%", opacity: 0 }}
                           animate={{ x: 0, opacity: 1 }}
                           exit={{ x: "100%", opacity: 0 }}
                           transition={{ duration: 0.5, ease: "easeInOut" }}
-                          className="fixed top-[0] right-[0]  h-full w-auto  sm:w-[700px] sm:max-w-full bg-white dark:bg-gray-800 shadow-2xl z-[999] overflow-y-auto rounded-xl "
+                          className="fixed top-[0] left-[0]  h-full w-auto  sm:w-[700px] sm:max-w-full bg-white dark:bg-gray-800 shadow-2xl z-[999] overflow-y-auto rounded-xl "
                         >
                           <div className="relative p-6">
                             {/* Close Button */}

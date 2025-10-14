@@ -150,23 +150,7 @@ export const education = [
 ];
 
 export const portfolioItems = [
-    {
-        id: 1,
-        slug: 'university-website',
-        title: 'University Website',
-        image: '/assets/projects/uniweb.png',
-        link: "https://university-website.vercel.app/",
-        github: "https://github.com/hamza9055/university-website",
-        description: "A responsive front-end university website built with HTML, CSS, and JavaScript. It showcases course details, faculty profiles. Designed with clean UI, accessibility in mind, and optimized for both desktop and mobile devices.",
-        technologies: ["HTML", "CSS", "JavaScript",],
-        points: [
-            "Course details and faculty pages",
-            "Event management system",
-            "Responsive mobile-first design",
-            "Responsive animations",
-            "Clean, modern UI", "Accessibility best practices"
-        ]
-    },
+    
     {
         id: 2,
         slug: 'registo',
@@ -230,7 +214,7 @@ export const portfolioItems = [
     id: 5,
     slug: 'plusnor',
     title: 'PlusNor',
-    image: '/assets/projects/plusnor.png',
+    image: '/assets/projects/plusnor1.png',
     link: "https://plusnor.no/",
     github: "",
     description: "Corporate website for an accounting firm. Designed to highlight services, build client trust, and provide easy contact access. Fully responsive, mobile-friendly layout with engaging slider animations.",
@@ -241,7 +225,24 @@ export const portfolioItems = [
         "Integrated slider animations",
         "Modern, clean UI with Bootstrap",
     ]
-}
+},
+{
+        id: 1,
+        slug: 'university-website',
+        title: 'University Website',
+        image: '/assets/projects/uniweb.png',
+        link: "https://university-website.vercel.app/",
+        github: "https://github.com/hamza9055/university-website",
+        description: "A responsive front-end university website built with HTML, CSS, and JavaScript. It showcases course details, faculty profiles. Designed with clean UI, accessibility in mind, and optimized for both desktop and mobile devices.",
+        technologies: ["HTML", "CSS", "JavaScript",],
+        points: [
+            "Course details and faculty pages",
+            "Event management system",
+            "Responsive mobile-first design",
+            "Responsive animations",
+            "Clean, modern UI", "Accessibility best practices"
+        ]
+    },
 
     // {
     //     id: 6,

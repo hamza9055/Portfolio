@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { Home, User, Briefcase, FileText, Mail, Download, Github, Youtube, Facebook, Twitter, MapPin, GraduationCap, Globe, Phone, Sun, Moon, Linkedin, Code, Codepen } from 'lucide-react';
+import { Home, User, Briefcase, FileText, Mail, Download, Github, Youtube, Facebook, Twitter, MapPin, GraduationCap, Globe, Phone, Sun, Moon, Linkedin, Code, Codepen, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -13,13 +13,16 @@ import Divider from '@/components/ui/divider';
 import { education, portfolioItems, Skills, timeline } from '@/components/data';
 import Link from 'next/link';
 import { RiRadioButtonFill } from 'react-icons/ri';
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Portfolio() {
   const [activeSection, setActiveSection] = useState('home');
   const [isDark, setIsDark] = useState(true);
   const [isLoaded, setIsLoaded] = useState(false);
   type PortfolioItem = typeof portfolioItems[number];
-  const [selectedProject, setSelectedProject] = useState<PortfolioItem | null>(portfolioItems[0]);
+  const [selectedProject, setSelectedProject] = useState<PortfolioItem | null>(null);
+  const [openDrawerId, setOpenDrawerId] = useState(null);
+
 
   useEffect(() => {
     setIsLoaded(true);
@@ -32,6 +35,21 @@ export default function Portfolio() {
     { id: 'education', icon: FileText, label: 'Education' },
     { id: 'contact', icon: Mail, label: 'Contact' },
   ];
+  const handleCardClick = (item: any) => {
+    // Toggle drawer if clicking the same project again
+    if (openDrawerId === item.id) {
+      setOpenDrawerId(null);
+      setSelectedProject(null);
+    } else {
+      setSelectedProject(item);
+      setOpenDrawerId(item.id);
+    }
+  };
+
+  const closeDrawer = () => {
+    setOpenDrawerId(null);
+    setSelectedProject(null);
+  };
 
   return (
     <div className={`min-h-screen transition-all duration-500 ${isDark ? 'dark bg-gray-900' : 'bg-gray-50'} ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
@@ -93,7 +111,7 @@ export default function Portfolio() {
                 <span className="text-3xl lg:text-4xl text-gray-600 dark:text-gray-300 animate-typewriter">A Web Developer.</span>
               </h1>
               <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed  animation-delay-300">
-               I&apos;m a passionate Web Developer who loves creating beautiful and functional websites. I specialize in modern web technologies like React, Next.js, and .NET, and I enjoy bringing creative ideas to life through code.
+                I&apos;m a passionate Web Developer who loves creating beautiful and functional websites. I specialize in modern web technologies like React, Next.js, and .NET, and I enjoy bringing creative ideas to life through code.
 
               </p>
 
@@ -122,7 +140,7 @@ export default function Portfolio() {
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                   I am a Full-Stack Web Developer with 2+ years of experience in React.js, Next.js, TypeScript, and C# (ASP.NET). Skilled in building scalable web applications, I work with RESTful APIs, SQL databases, Azure services, Microsoft Graph APIs, and SignalR for real-time communication. I focus on writing clean, maintainable code and creating responsive, user-friendly interfaces that deliver excellent experiences.
-                  </p>
+                </p>
                 <CvButton />
               </div>
 
@@ -212,14 +230,13 @@ export default function Portfolio() {
                 </p>
               </div>
 
-              <div className="flex flex-col lg:flex-row gap-8">
-
-                <div className="flex flex-col gap-6">
+              <div className="">
+                <div className="flex gap-6 flex-wrap justify-center lg:justify-start relative">
                   {portfolioItems.map((item) => (
                     <Card
                       key={item.id}
-                      onClick={() => setSelectedProject(item)}
-                      className=" animate-slideInLeft cursor-pointer group overflow-hidden hover:shadow-xl transition-all duration-700 transform hover:-translate-y-2 hover:scale-105"
+                      onClick={() => handleCardClick(item)}
+                      className="w-[350px] animate-slideInLeft cursor-pointer group overflow-hidden hover:shadow-xl transition-all duration-700 transform hover:-translate-y-2 hover:scale-105"
                     >
                       <div className="relative overflow-hidden">
                         <Image
@@ -235,73 +252,107 @@ export default function Portfolio() {
                       </div>
                     </Card>
                   ))}
-                </div>
-                <div className="lg:w-1/2 p-4 bg-gray-100 dark:bg-gray-800 rounded-xl animate-slideInRight">
-                  {selectedProject != null ? (
-                    <div
-                      key={selectedProject?.id || "empty"}
-                      className='animate-fadeInUp'>
-                      <p className="text-gray-600 dark:text-gray-300">Project</p>
-                      <h2 className="text-4xl font-bold text-orange-500">Overview</h2>
-                      <p className="text-gray-700 dark:text-gray-300 mt-4">{selectedProject.description}</p>
-                      <div className=" relative">
-                        <div className="absolute top-0 left-0 w-full h-[-webkit-fill-available] bg-black/30 z-10 rounded-xl" />
-                        <Image
-                          src={selectedProject.image}
-                          alt={selectedProject.title}
-                          width={600}
-                          height={300}
-                          className="rounded-xl mt-4 object-cover "
+
+                  {/* Right Drawer with AnimatePresence */}
+                  <AnimatePresence>
+                    {openDrawerId && selectedProject && (
+                      <>
+                        {/* Overlay background */}
+                        <motion.div
+                          className="fixed inset-0 bg-black/40 z-[998]"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                          transition={{ duration: 0.3 }}
+                          onClick={closeDrawer}
                         />
 
-                      </div>
-                      <div className=" z-10 p-2">
-                        <h2 className="text-xl font-bold py-2 dark:text-gray-300">{selectedProject.title}</h2>
-                      </div>
-                      <div className="flex flex-col lg:flex-row gap-8 justify-between">
-                        <div className="">
-                          {selectedProject.points?.map((point, index) => (
-                            <p key={index} className="mt-4 flex items-center dark:text-gray-300">
-                              <RiRadioButtonFill className="pr-1" /> {point}
-                            </p>
-                          ))}
+                        {/* Drawer panel */}
+                        <motion.div
+                          initial={{ x: "100%", opacity: 0 }}
+                          animate={{ x: 0, opacity: 1 }}
+                          exit={{ x: "100%", opacity: 0 }}
+                          transition={{ duration: 0.5, ease: "easeInOut" }}
+                          className="fixed top-[0] right-[0]  h-full w-auto  sm:w-[700px] sm:max-w-full bg-white dark:bg-gray-800 shadow-2xl z-[999] overflow-y-auto rounded-xl "
+                        >
+                          <div className="relative p-6">
+                            {/* Close Button */}
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              className="absolute top-4 right-4"
+                              onClick={closeDrawer}
+                            >
+                              <X className="h-5 w-5" />
+                            </Button>
 
-                          {selectedProject.github && (
-                            <a href={selectedProject.github} target="_blank" rel="noreferrer">
-                              <Button className="px-8 py-2 mt-4 mr-8 bg-orange-500">Code</Button>
-                            </a>
-                          )}
-                          {selectedProject.link && (
-                            <a href={selectedProject.link} target="_blank" rel="noreferrer">
-                              <Button className="px-8 py-2 mt-4 bg-orange-500">Demo</Button>
-                            </a>
-                          )}
-                        </div>
+                            {/* Content */}
+                            <p className="text-gray-600 dark:text-gray-300">Project</p>
+                            <h2 className="text-4xl font-bold text-orange-500">Overview</h2>
+                            <p className="text-gray-700 dark:text-gray-300 mt-4">{selectedProject.description}</p>
 
-                        <div className="  shadow-xl shadow-gray-400 rounded-xl py-4 dark:shadow-gray-700">
-                          <div className="p-4">
-                            <p className="text-center font-bold pb-2 text-orange-500">
-                              Technologies
-                            </p>
-                            <div className="flex md:flex-col flex-row flex-wrap justify-around">
-                              {selectedProject.technologies?.map((tech) => (
-                                <p
-                                  key={tech}
-                                  className="text-gray-600 dark:text-gray-300 py-2 flex items-center"
-                                >
-                                  <RiRadioButtonFill className="pr-1" /> {tech}
-                                </p>
-                              ))}
+                            <div className="relative mt-4">
+                              <div className="absolute top-0 left-0 w-full h-full bg-black/30 z-10 rounded-xl" />
+                              <Image
+                                src={selectedProject.image}
+                                alt={selectedProject.title}
+                                width={700}
+                                height={300}
+                                className="rounded-xl object-cover"
+                              />
+                            </div>
+
+                            <div className="z-10 p-2">
+                              <h2 className="text-xl font-bold py-2 dark:text-gray-300">{selectedProject.title}</h2>
+                            </div>
+
+                            <div className="flex flex-col lg:flex-row gap-8 justify-between">
+                              <div>
+                                {selectedProject.points?.map((point, index) => (
+                                  <p key={index} className="mt-4 flex items-center dark:text-gray-300">
+                                    <RiRadioButtonFill className="pr-1" /> {point}
+                                  </p>
+                                ))}
+
+                                {selectedProject.github && (
+                                  <a href={selectedProject.github} target="_blank" rel="noreferrer">
+                                    <Button className="px-8 py-2 mt-4 mr-4 bg-orange-500">Code</Button>
+                                  </a>
+                                )}
+                                {selectedProject.link && (
+                                  <a href={selectedProject.link} target="_blank" rel="noreferrer">
+                                    <Button className="px-8 py-2 mt-4 bg-orange-500">WebSite</Button>
+                                  </a>
+                                )}
+                              </div>
+
+                              <div className="shadow-xl shadow-gray-400 rounded-xl py-4 dark:shadow-gray-700">
+                                <div className="p-4">
+                                  <p className="text-center font-bold pb-2 text-orange-500">
+                                    Technologies
+                                  </p>
+                                  <div className="flex md:flex-col flex-row flex-wrap justify-around w-auto sm:w-[200px]">
+                                    {selectedProject.technologies?.map((tech) => (
+                                      <p
+                                        key={tech}
+                                        className="text-gray-600 dark:text-gray-300 py-2 flex items-center"
+                                      >
+                                        <RiRadioButtonFill className="pr-1" /> {tech}
+                                      </p>
+                                    ))}
+                                  </div>
+                                </div>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      </div>
-                    </div>
-                  ) : (
-                    <p className="text-gray-500 dark:text-gray-400">Select a project to see details</p>
-                  )}
+                        </motion.div>
+                      </>
+                    )}
+                  </AnimatePresence>
                 </div>
               </div>
+
+
 
             </div>
           </section>

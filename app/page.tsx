@@ -273,7 +273,7 @@ export default function Portfolio() {
                           animate={{ x: 0, opacity: 1 }}
                           exit={{ x: "100%", opacity: 0 }}
                           transition={{ duration: 0.5, ease: "easeInOut" }}
-                          className="fixed top-[0] left-[0]  h-full w-auto  sm:w-[700px] sm:max-w-full bg-white dark:bg-gray-800 shadow-2xl z-[999] overflow-y-auto rounded-xl "
+                          className="fixed top-[0] left-[0]  h-full w-auto  sm:w-[700px] sm:max-w-full bg-white dark:bg-gray-800 shadow-2xl z-[999] overflow-y-auto rounded-xl custom-scrollbar"
                         >
                           <div className="relative p-6">
                             {/* Close Button */}

@@ -236,7 +236,7 @@ export default function Portfolio() {
                     <Card
                       key={item.id}
                       onClick={() => handleCardClick(item)}
-                      className="w-[350px] animate-slideInLeft cursor-pointer group overflow-hidden hover:shadow-xl transition-all duration-700 transform hover:-translate-y-2 hover:scale-105"
+                      className="w-[350px] opacity-0 animate-slideInLeft cursor-pointer group overflow-hidden hover:shadow-xl transition-all duration-700 transform hover:-translate-y-2 hover:scale-105"
                     style={{ animationDelay: `${index * 200}ms` }}
                     >
                       <div className="relative overflow-hidden">
@@ -247,8 +247,9 @@ export default function Portfolio() {
                           height={192}
                           className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-125"
                         />
-                        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center">
+                        <div className=" absolute inset-0 bg-gradient-to-t from-orange-600 via-orange-500 to-orange-200 opacity-0 group-hover:opacity-90 group-hover:translate-y-0 translate-y-full  duration-1000 flex flex-col items-center justify-center">
                           <h3 className="text-white text-lg font-semibold">{item.title}</h3>
+                          <div className="text-sm text-white m-2 rounded-full p-1 border-none">More Info</div>
                         </div>
                       </div>
                     </Card>
@@ -383,8 +384,8 @@ export default function Portfolio() {
                     {education.map((item, index) => (
                       <div
                         key={item.id}
-                        className="relative bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6 hover:shadow-xl transition-all duration-300 group animate-fadeInUp"
-                        style={{ animationDelay: `${index * 200}ms` }}
+                        className="relative opacity-0 bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6 hover:shadow-xl transition-all duration-300 group animate-fadeInUp"
+                        style={{ animationDelay: `${index * 400}ms` }}
                       >
                         <Badge variant="secondary" className="mb-2">
                           {item.year}
@@ -470,7 +471,7 @@ export default function Portfolio() {
                     ].map((contact, index) => {
                       const Icon = contact.icon;
                       return (
-                        <div key={index} className="flex items-center gap-4 animate-slideInLeft hover:scale-105 transition-transform duration-300" style={{ animationDelay: `${index * 100}ms` }}>
+                        <div key={index} className="flex opacity-0 items-center gap-4 animate-slideInLeft hover:scale-105 transition-transform duration-300" style={{ animationDelay: `${index * 200}ms` }}>
                           <div className="w-10 h-10 bg-orange-500/20 rounded-full flex items-center justify-center hover:bg-orange-500/30 transition-colors duration-300 hover:rotate-12">
                             <Icon className="w-5 h-5 text-orange-500" />
                           </div>
@@ -497,8 +498,8 @@ export default function Portfolio() {
                           key={index}
                           variant="outline"
                           size="icon"
-                          className="w-12 h-12 rounded-full dark:bg-orange-500 hover:bg-orange-500 hover:text-white hover:border-orange-500 transition-all duration-300 hover:scale-110 hover:rotate-12 animate-fadeInUp"
-                          style={{ animationDelay: `${index * 100}ms` }}
+                          className="w-12 h-12 rounded-full dark:bg-orange-500 hover:bg-orange-500 hover:text-white opacity-0 hover:border-orange-500 transition-all duration-300 hover:scale-110 hover:rotate-12 animate-fadeInUp"
+                          style={{ animationDelay: `${index * 200}ms` }}
                           onClick={() => window.open(social.href, '_blank')}
                         >
                           <Icon className="w-5 h-5" />

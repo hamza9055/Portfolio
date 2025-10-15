@@ -232,11 +232,12 @@ export default function Portfolio() {
 
               <div className="">
                 <div className="flex gap-6 flex-wrap justify-center lg:justify-start relative">
-                  {portfolioItems.map((item) => (
+                  {portfolioItems.map((item, index) => (
                     <Card
                       key={item.id}
                       onClick={() => handleCardClick(item)}
                       className="w-[350px] animate-slideInLeft cursor-pointer group overflow-hidden hover:shadow-xl transition-all duration-700 transform hover:-translate-y-2 hover:scale-105"
+                    style={{ animationDelay: `${index * 200}ms` }}
                     >
                       <div className="relative overflow-hidden">
                         <Image
@@ -385,7 +386,6 @@ export default function Portfolio() {
                         className="relative bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6 hover:shadow-xl transition-all duration-300 group animate-fadeInUp"
                         style={{ animationDelay: `${index * 200}ms` }}
                       >
-
                         <Badge variant="secondary" className="mb-2">
                           {item.year}
                         </Badge>

@@ -32,7 +32,7 @@ export default function Portfolio() {
     { id: 'home', icon: Home, label: 'Home' },
     { id: 'about', icon: User, label: 'About' },
     { id: 'portfolio', icon: Briefcase, label: 'Portfolio' },
-    { id: 'education', icon: FileText, label: 'Education' },
+    { id: 'education', icon: GraduationCap, label: 'Education' },
     { id: 'contact', icon: Mail, label: 'Contact' },
   ];
   const handleCardClick = (item: any) => {
@@ -218,7 +218,7 @@ export default function Portfolio() {
       {/* Portfolio Section */}
       {
         activeSection === 'portfolio' && (
-          <section className="min-h-screen py-20 px-8 animate-fadeIn h-full"  id="portfolio">
+          <section className="min-h-screen py-20 px-8 animate-fadeIn h-full" id="portfolio">
             <div className="max-w-6xl mx-auto">
               <div className="text-center mb-16 animate-fadeInUp">
                 <h2 className="text-4xl lg:text-5xl font-bold mb-4 dark:text-gray-300">
@@ -374,7 +374,7 @@ export default function Portfolio() {
 
 
               {/* Timeline */}
-              <div>
+              {/* <div>
                 <h3 className="text-2xl font-semibold mb-8 animate-fadeInUp dark:text-orange-500">My Education & Certifications</h3>
                 <div className="space-y-8">
                   {education.map((item, index) => (
@@ -387,7 +387,7 @@ export default function Portfolio() {
                       </div>
                       <div className="flex-1 pb-2">
                         <Badge variant="secondary" className="mb-2">{item.year}</Badge>
-                        <h4 className="text-xl font-semibold mb-1 dark:text-gray-300">
+                        <h4 className="sm:text-xl text-sm font-semibold mb-1 dark:text-gray-300">
                           {item.title} <span className="text-orange-500 ">- {item.institution}</span>
                         </h4>
 
@@ -395,7 +395,39 @@ export default function Portfolio() {
                     </div>
                   ))}
                 </div>
+              </div> */}
+              <div>
+
+                {/* Education Section */}
+                <div className="mb-12">
+                  <h4 className="text-xl font-semibold mb-6 text-orange-500">🎓 Education & 📜 Certifications</h4>
+                  <div className="relative border-l-2 border-orange-500 dark:border-orange-400 pl-6 space-y-10">
+                    {education.map((item) => (
+                      <div
+                        key={item.id}
+                        className="relative bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6 hover:shadow-xl transition-all duration-300 group"
+                      >
+                        {/* <span className="absolute -left-[1.55rem] top-6 w-6 h-6 bg-orange-500 rounded-full border-4 border-white dark:border-gray-800 group-hover:scale-125 transition-transform"></span> */}
+
+                        <Badge variant="secondary" className="mb-2">
+                          {item.year}
+                        </Badge>
+
+                        <h4 className="text-lg sm:text-xl font-semibold mb-1 dark:text-gray-200">
+                          {item.title}
+                        </h4>
+                        <p className="text-orange-500 font-medium">{item.institution}</p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                          {item.type === 1 ? "Education" : "Certification"}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+
               </div>
+
             </div>
             <div>
 
@@ -467,7 +499,7 @@ export default function Portfolio() {
                           <div className="w-10 h-10 bg-orange-500/20 rounded-full flex items-center justify-center hover:bg-orange-500/30 transition-colors duration-300 hover:rotate-12">
                             <Icon className="w-5 h-5 text-orange-500" />
                           </div>
-                          <div className='flex justify-between w-full'>
+                          <div className='flex flex-wrap justify-between w-full'>
                             <span className="font-medium dark:text-orange-500">{contact.label}: </span>
                             <span className="text-gray-600 dark:text-gray-300">{contact.value}</span>
                           </div>

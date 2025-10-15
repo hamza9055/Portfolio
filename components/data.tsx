@@ -108,44 +108,50 @@ export const education = [
         year: '2025',
         title: 'Bachelor of Science in Computer Science',
         institution: 'Virtual University of Lahore',
-        location: 'Cairo, Egypt',
+        type: 1,
     },
     {
         id: 2,
         year: 'Mar 2022',
         title: 'Responsive Web Design',
         institution: 'freeCodeCamp',
+        type: 2,
     },
     {
         id: 3,
         year: 'May 2022',
         title: 'JavaScript Modern Development',
         institution: 'Udemy',
+        type: 2,
     },
     {
         id: 4,
         year: 'Feb 2023',
         title: 'Front-End Development Libraries',
         institution: 'freeCodeCamp',
+        type: 2,
     }
     , {
         id: 5,
         year: 'Feb 2023',
         title: 'JavaScript Algorithms & Data Structures',
         institution: 'freeCodeCamp',
+        type: 2,
     }
     ,
     {
         id: 6,
         year: 'Dec 2023',
-        title: 'Introduction to Front End Development -',
+        title: 'Introduction to Front End Development',
         institution: 'SimpliLearn',
+        type: 2,
     },
     {
         id: 7,
         year: 'Jan 2025',
         title: 'Foundation C# with Microsoft',
         institution: 'freeCodeCamp',
+        type: 2,
     }
 ];
 

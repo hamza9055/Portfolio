@@ -523,7 +523,7 @@ export default function Portfolio() {
                   </form> */}
                   <Image
                     className="absolute z-1"
-                    src={'/assets/skills/dev.png'}
+                    src={'/assets/contact.png'}
                     alt={'/assets/dev.png'}
                     fill
                     style={{ objectFit: "cover" }}

@@ -76,6 +76,11 @@ export const Skills = {
             icon: "/assets/skills/sql.png",
             text: "SQL Server"
         },
+         {
+            id: 12,
+            icon: "/assets/skills/net.png",
+            text: "ASP.NET"
+        },
 
     ],
 

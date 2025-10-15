@@ -385,6 +385,7 @@ export default function Portfolio() {
                         className="relative bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6 hover:shadow-xl transition-all duration-300 group animate-fadeInUp"
                         style={{ animationDelay: `${index * 200}ms` }}
                       >
+
                         <Badge variant="secondary" className="mb-2">
                           {item.year}
                         </Badge>

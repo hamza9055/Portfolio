@@ -236,8 +236,48 @@ export default function Portfolio() {
                     <Card
                       key={item.id}
                       onClick={() => handleCardClick(item)}
+                      className="relative w-full overflow-hidden cursor-pointer group rounded-xl shadow-md hover:shadow-xl transition-all duration-700 transform hover:-translate-y-2 hover:scale-105 opacity-0 animate-slideInLeft"
+                      style={{ animationDelay: `${index * 200}ms` }}
+                    >
+                      {/* Diagonal background using clip-path */}
+                      <div className="absolute inset-0 bg-gradient-to-tr from-gray-600 via-gray-500 to-gray-300 dark:from-orange-600 dark:via-orange-500 dark:to-orange-300 clip-diagonal"></div>
+
+                      {/* Content Layer */}
+                      <div className="relative z-10 grid grid-cols-2 h-48">
+                        {/* Text Side */}
+                        <div className="flex flex-col justify-center pl-6 pr-4 dark:text-white ">
+                          <h3 className="text-lg font-semibold mb-1">{item.title}</h3>
+                          <p className="text-sm opacity-90 line-clamp-3">{item.description}</p>
+                          <span
+                            className="mt-2 inline-block text-xs font-semibold tracking-wide 
+                                      text-orange-100 bg-orange-700/40 px-3 py-1 rounded-full shadow-md 
+                                       transition-all duration-300 hover:bg-orange-500 hover:text-white hover:scale-105"
+                          >
+                            More Info
+                          </span>
+
+                        </div>
+
+                        {/* Image Side */}
+                        <div className="relative overflow-hidden">
+                          <Image
+                            src={item.image}
+                            alt={item.title}
+                            width={400}
+                            height={192}
+                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                          />
+                        </div>
+                      </div>
+                    </Card>
+                  ))}
+
+                  {/* {portfolioItems.map((item, index) => (
+                    <Card
+                      key={item.id}
+                      onClick={() => handleCardClick(item)}
                       className="w-[350px] opacity-0 animate-slideInLeft cursor-pointer group overflow-hidden hover:shadow-xl transition-all duration-700 transform hover:-translate-y-2 hover:scale-105"
-                    style={{ animationDelay: `${index * 200}ms` }}
+                      style={{ animationDelay: `${index * 200}ms` }}
                     >
                       <div className="relative overflow-hidden">
                         <Image
@@ -253,7 +293,7 @@ export default function Portfolio() {
                         </div>
                       </div>
                     </Card>
-                  ))}
+                  ))} */}
 
                   {/* Right Drawer with AnimatePresence */}
                   <AnimatePresence>

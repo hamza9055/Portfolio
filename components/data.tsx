@@ -76,7 +76,7 @@ export const Skills = {
             icon: "/assets/skills/sql.png",
             text: "SQL Server"
         },
-         {
+        {
             id: 12,
             icon: "/assets/skills/net.png",
             text: "ASP.NET"
@@ -161,99 +161,105 @@ export const education = [
 ];
 
 export const portfolioItems = [
-    
+
     {
-        id: 2,
+        id: 1,
+        category: 'Professional',
         slug: 'registo',
         title: 'Registo',
         image: '/assets/projects/registo.png',
         link: "https://registo.no/",
         github: "",
-        description: "Accounting Task Management Platform. Built a scalable, multi-tenant system for managing business clients, featuring contract e-signing, automated task scheduling (e.g., VAT filing, payroll), and client-specific accounting workflows.",
+        description: "A full-featured accounting task management platform designed for accounting firms and their clients. Developed a scalable, multi-tenant system with secure authentication, client-specific workflows, automated task scheduling (VAT, payroll), and digital contract signing.",
         technologies: ["React", "TypeScript", "C#", ".NET", "SQL Server", "Ant Design", "Sass", "Azure", "REST APIs", 'SignalR', 'Azure Blob Storage'],
         points: [
-            "Admin panel with role-based access",
-            "Secure user authentication",
-            "Business registration workflows",
-            "contract e-signing",
-            "automated task scheduling (e.g., VAT filing, payroll)",
-            "SignalR for real-time updates",
-            "real time masesaging",
-            "outlook integration",
-            "blob storage integration",
-
-
+            'Admin panel with role-based access control',
+            'Secure user authentication and authorization',
+            'Business registration workflows',
+            'Digital contract e-signing',
+            'Automated task scheduling (VAT filing, payroll)',
+            'Real-time updates with SignalR',
+            'Integrated real-time messaging system',
+            'Outlook email synchronization',
+            'Azure Blob Storage integration for file handling',
         ]
     },
     {
-        id: 3,
+        id: 2,
+        category: 'Professional',
         slug: 'equinet',
         title: 'Equinet',
         image: '/assets/projects/equinet.png',
         link: "https://equinet.no/",
         github: "",
-        description: "Service that brings horse trainers, riding schools, and students together. Implemented features like lesson scheduling, trainer/student dashboards, course management, chat, and Stripe-based payments.",
+        description: "'A web platform that connects horse trainers, riding schools, and students. Built a complete scheduling, management, and payment system enabling trainers and students to interact efficiently with role-based dashboards.",
         technologies: ["React", "TypeScript", "C#", ".NET", "SQL Server", "Ant Design", "Sass", "Azure", "REST APIs"],
         points: [
-            "Role-based access",
-            "Stripe payments",
-            "product management",
-            "trainer/student/Shool dashboard",
-            "finance management",
-            "horse management",
-            "lesson scheduling",
-            "chat feature",
+            'Role-based access control for trainers, schools, and students',
+            'Stripe payment integration',
+            'Product and service management',
+            'Trainer, student, and school dashboards',
+            'Finance management and reporting',
+            'Horse management module',
+            'Lesson scheduling and management system',
+            'Real-time chat and messaging feature',
         ]
     },
     {
-    id: 4,
-    title: 'ItTrends',
-    slug: 'ittrends',
-    image: '/assets/projects/ittrends.png',
-    link: "https://www.ittrends.no/",
-    github: "",
-    description: "A professional company website built for an IT services firm. Developed a modern business platform showcasing services, portfolio, and contact information. Implemented responsive design with smooth animations using Bootstrap and Tiny Slider.",
-    technologies: ["HTML", "CSS", "JavaScript", "Bootstrap", "Tiny Slider"],
-    points: [
-        "Responsive company profile website",
-        "Service and portfolio showcase",
-        "Smooth slider animations with Tiny Slider",
-        "Built with Bootstrap for grid and components",
-    ]
-},
-{
-    id: 5,
-    slug: 'plusnor',
-    title: 'PlusNor',
-    image: '/assets/projects/plusnor1.png',
-    link: "https://plusnor.no/",
-    github: "",
-    description: "Corporate website for an accounting firm. Designed to highlight services, build client trust, and provide easy contact access. Fully responsive, mobile-friendly layout with engaging slider animations.",
-    technologies: ["HTML", "CSS", "JavaScript", "Bootstrap", "Tiny Slider"],
-    points: [
-        "Responsive and mobile-friendly design",
-        "Business service showcase",
-        "Integrated slider animations",
-        "Modern, clean UI with Bootstrap",
-    ]
-},
-{
-        id: 1,
+        id: 3,
+        category: 'Professional',
+        title: 'ItTrends',
+        slug: 'ittrends',
+        image: '/assets/projects/ittrends.png',
+        link: "https://www.ittrends.no/",
+        github: "",
+        description: "Corporate website for an IT services firm, built to showcase offerings, portfolio, and company information. Focused on responsive UI, professional design, and smooth animations for a strong brand presence.",
+        technologies: ["HTML", "CSS", "JavaScript", "Bootstrap", "Tiny Slider"],
+        points: [
+            'Fully responsive company website',
+            'Showcase of services and portfolio',
+            'Smooth slider animations using Tiny Slider',
+            'Optimized responsive transitions',
+            'Modern layout built with Bootstrap grid system',
+        ]
+    },
+    {
+        id: 4,
+        category: 'Professional',
+        slug: 'plusnor',
+        title: 'PlusNor',
+        image: '/assets/projects/plusnor1.png',
+        link: "https://plusnor.no/",
+        github: "",
+        description: "Corporate website for an accounting firm, designed to build client trust and highlight professional services. Fully responsive with modern animations and a polished UI to enhance brand credibility.",
+        technologies: ["HTML", "CSS", "JavaScript", "Bootstrap", "Tiny Slider"],
+        points: [
+            "Responsive and mobile-friendly design",
+            "Business service showcase",
+            'Animated slider for featured content',
+            'Smooth responsive animations',
+            'Modern, clean UI built with Bootstrap',
+        ]
+    },
+    {
+        id: 5,
+        category: 'Personal',
         slug: 'university-website',
         title: 'University Website',
         image: '/assets/projects/uniweb.png',
-        link: "https://university-website.vercel.app/",
-        github: "https://github.com/hamza9055/university-website",
-        description: "A responsive front-end university website built with HTML, CSS, and JavaScript. It showcases course details, faculty profiles. Designed with clean UI, accessibility in mind, and optimized for both desktop and mobile devices.",
-        technologies: ["HTML", "CSS", "JavaScript",],
+        link: 'https://university-website.vercel.app/',
+        github: 'https://github.com/hamza9055/university-website',
+        description:
+            'A personal frontend project built to practice modern UI design and responsive web development. Features course details and faculty profiles, created with pure HTML, CSS, and JavaScript.',
+        technologies: ['HTML', 'CSS', 'JavaScript'],
         points: [
-            "Course details and faculty pages",
-            "Event management system",
-            "Responsive mobile-first design",
-            "Responsive animations",
-            "Clean, modern UI", "Accessibility best practices"
-        ]
-    },
+            'Responsive and mobile-first layout',
+            'Clean, semantic HTML and CSS architecture',
+            'Custom animations and transitions',
+            'Optimized for performance and accessibility',
+        ],
+    }
+
 
     // {
     //     id: 6,

@@ -208,6 +208,31 @@ export const portfolioItems = [
     {
         id: 3,
         category: 'Professional',
+        slug: 'tackit',
+        title: 'TalkIt',
+        image: '/assets/projects/talkit.png',
+        link: 'https://talkit-frontend-cpe0cyadafd7f7hf.norwayeast-01.azurewebsites.net/',
+        github: '',
+        description:
+            'A real-time communication tool for doctors and patients. Designed and developed modern UI components and smooth animations using Next.js and Tailwind CSS. Integrated the login API using BankID for secure authentication and connected the project with Azure Pipeline for CI/CD deployment.',
+        technologies: [
+            'Next.js',
+            'Tailwind CSS',
+            'React.js',
+            'REST APIs',
+            'Azure Pipeline',
+        ],
+        points: [
+            'Responsive and animated front-end interface',
+            'Secure login integration using BankID',
+            'Applied smooth UI transitions for enhanced UX',
+            'API integration for authentication',
+            'Connected with Azure Pipeline for automated deployment',
+        ],
+    },
+    {
+        id: 3,
+        category: 'Professional',
         title: 'ItTrends',
         slug: 'ittrends',
         image: '/assets/projects/ittrends.png',

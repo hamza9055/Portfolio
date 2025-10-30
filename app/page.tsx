@@ -236,7 +236,7 @@ export default function Portfolio() {
                     <Card
                       key={item.id}
                       onClick={() => handleCardClick(item)}
-                      className="relative w-full overflow-hidden cursor-pointer group rounded-xl shadow-md hover:shadow-xl transition-all duration-700 transform hover:-translate-y-2 hover:scale-105 opacity-0 animate-slideInLeft"
+                      className="bg-orange-500 dark:bg-black relative w-full overflow-hidden cursor-pointer group rounded-xl shadow-md hover:shadow-xl transition-all duration-700 transform hover:-translate-y-2 hover:scale-105 opacity-0 animate-slideInLeft"
                       style={{ animationDelay: `${index * 200}ms` }}
                     >
                       {/* Diagonal background using clip-path */}
@@ -245,7 +245,7 @@ export default function Portfolio() {
                       {/* Content Layer */}
                       <div className="relative z-10 grid grid-cols-2 h-48">
                         {/* Text Side */}
-                        <div className="flex flex-col justify-center pl-6 pr-4 dark:text-white ">
+                        <div className="flex flex-col justify-center pl-6 pr-4 text-white  ">
                           <h3 className="text-lg font-semibold mb-1">{item.title}</h3>
                           <p className="text-sm opacity-90 line-clamp-3">{item.description}</p>
                           <span
@@ -272,28 +272,6 @@ export default function Portfolio() {
                     </Card>
                   ))}
 
-                  {/* {portfolioItems.map((item, index) => (
-                    <Card
-                      key={item.id}
-                      onClick={() => handleCardClick(item)}
-                      className="w-[350px] opacity-0 animate-slideInLeft cursor-pointer group overflow-hidden hover:shadow-xl transition-all duration-700 transform hover:-translate-y-2 hover:scale-105"
-                      style={{ animationDelay: `${index * 200}ms` }}
-                    >
-                      <div className="relative overflow-hidden">
-                        <Image
-                          src={item.image}
-                          alt={item.title}
-                          width={400}
-                          height={192}
-                          className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-125"
-                        />
-                        <div className=" absolute inset-0 bg-gradient-to-t from-orange-600 via-orange-500 to-orange-200 opacity-0 group-hover:opacity-90 group-hover:translate-y-0 translate-y-full  duration-1000 flex flex-col items-center justify-center">
-                          <h3 className="text-white text-lg font-semibold">{item.title}</h3>
-                          <div className="text-sm text-white m-2 rounded-full p-1 border-none">More Info</div>
-                        </div>
-                      </div>
-                    </Card>
-                  ))} */}
 
                   {/* Right Drawer with AnimatePresence */}
                   <AnimatePresence>

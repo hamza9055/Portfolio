@@ -72,15 +72,25 @@ export const Skills = {
             text: "REST APis"
         },
         {
-            id: 12,
+            id: 14,
             icon: "/assets/skills/sql.png",
             text: "SQL Server"
         },
         {
-            id: 12,
+            id: 15,
             icon: "/assets/skills/net.png",
             text: "ASP.NET"
         },
+        {
+            id: 16,
+            icon: "/assets/skills/node.png",
+            text: "Node js"
+        },
+        {
+            id: 17,
+            icon: "/assets/skills/mongo.png",
+            text: "MondoDB"
+        }
 
     ],
 
@@ -203,6 +213,7 @@ export const portfolioItems = [
             'Horse management module',
             'Lesson scheduling and management system',
             'Real-time chat and messaging feature',
+            'Framer Motion for better animation'
         ]
     },
     {

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { Home, User, Briefcase, FileText, Mail, Download, Github, Youtube, Facebook, Twitter, MapPin, GraduationCap, Globe, Phone, Sun, Moon, Linkedin, Code, Codepen, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -23,9 +23,39 @@ export default function Portfolio() {
   const [selectedProject, setSelectedProject] = useState<PortfolioItem | null>(null);
   const [openDrawerId, setOpenDrawerId] = useState(null);
 
+  const sectionRefs = {
+    home: useRef<HTMLElement>(null),
+    about: useRef<HTMLElement>(null),
+    portfolio: useRef<HTMLElement>(null),
+    education: useRef<HTMLElement>(null),
+    contact: useRef<HTMLElement>(null),
+  };
 
   useEffect(() => {
     setIsLoaded(true);
+
+    const observerOptions = {
+      root: null,
+      rootMargin: '-50% 0px -50% 0px',
+      threshold: 0,
+    };
+
+    const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const sectionId = entry.target.getAttribute('id');
+          if (sectionId) setActiveSection(sectionId);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    Object.values(sectionRefs).forEach((ref) => {
+      if (ref.current) observer.observe(ref.current);
+    });
+
+    return () => observer.disconnect();
   }, []);
 
   const sections = [
@@ -35,8 +65,15 @@ export default function Portfolio() {
     { id: 'education', icon: GraduationCap, label: 'Education' },
     { id: 'contact', icon: Mail, label: 'Contact' },
   ];
+
+  const scrollToSection = (sectionId: string) => {
+    const section = sectionRefs[sectionId as keyof typeof sectionRefs].current;
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   const handleCardClick = (item: any) => {
-    // Toggle drawer if clicking the same project again
     if (openDrawerId === item.id) {
       setOpenDrawerId(null);
       setSelectedProject(null);
@@ -62,12 +99,11 @@ export default function Portfolio() {
               key={section.id}
               variant={activeSection === section.id ? "default" : "outline"}
               size="icon"
-              onClick={() => setActiveSection(section.id)}
+              onClick={() => scrollToSection(section.id)}
               className={`md:w-12 md:h-12 w-8 h-8 rounded-full transition-all duration-300 hover:scale-110 ${activeSection === section.id
                 ? 'bg-orange-500 hover:bg-orange-600 text-white shadow-lg shadow-orange-500/30 scale-110'
                 : 'bg-white/10 backdrop-blur-sm hover:bg-white/20 border-white/20 hover:shadow-lg'
                 }`}
-
               style={{ animationDelay: `${index * 100}ms` }}
             >
               <Icon className="w-4 h-4 md:w-5 md:h-5" />
@@ -87,158 +123,208 @@ export default function Portfolio() {
       </Button>
 
       {/* Home Section */}
-      {activeSection === 'home' && (
-        <section className="min-h-screen flex items-center justify-center px-8 animate-fadeIn">
-          <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="order-2 lg:order-1 animate-slideInLeft">
-              <div className="relative">
-                <Image
-                  src="/assets/me.png"
-                  alt="Hamza Hamid"
-                  width={320}
-                  height={320}
-                  className="relative z-10 w-80 h-80 object-cover rounded-full border-4 border-orange-500/30 shadow-2xl hover:scale-105 transition-transform duration-500 hover:shadow-orange-500/20"
-                  style={{ width: '320px', height: '320px' }}
-                  priority
-                />
-
-              </div>
+      <section id="home" ref={sectionRefs.home} className="min-h-screen flex items-center justify-center px-8">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="order-2 lg:order-1"
+          >
+            <div className="relative">
+              <Image
+                src="/assets/me.png"
+                alt="Hamza Hamid"
+                width={320}
+                height={320}
+                className="relative z-10 w-80 h-80 object-cover rounded-full border-4 border-orange-500/30 shadow-2xl hover:scale-105 transition-transform duration-500 hover:shadow-orange-500/20"
+                style={{ width: '320px', height: '320px' }}
+                priority
+              />
             </div>
-            <div className="order-1 lg:order-2 space-y-6 animate-slideInRight">
-              <h1 className="text-gray-600 text-2xl lg:text-6xl font-bold animate-fadeInUp">
-                <span className='dark:text-gray-300'>Hi, I&apos;m </span><span className="text-orange-500">Hamza Hamid.</span>
-                <br />
-                <span className="text-3xl lg:text-4xl text-gray-600 dark:text-gray-300 animate-typewriter">A Web Developer.</span>
-              </h1>
-              <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed  animation-delay-300">
-                I&apos;m a passionate Web Developer who loves creating beautiful and functional websites. I specialize in modern web technologies like React, Next.js, and .NET, and I enjoy bringing creative ideas to life through code.
-
-              </p>
-
-              <CvButton />
-            </div>
-          </div>
-        </section>
-      )}
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="order-1 lg:order-2 space-y-6"
+          >
+            <h1 className="text-gray-600 text-2xl lg:text-6xl font-bold">
+              <span className='dark:text-gray-300'>Hi, I&apos;m </span><span className="text-orange-500">Hamza Hamid.</span>
+              <br />
+              <span className="text-3xl lg:text-4xl text-gray-600 dark:text-gray-300">A Web Developer.</span>
+            </h1>
+            <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+              I&apos;m a passionate Web Developer who loves creating beautiful and functional websites. I specialize in modern web technologies like React, Next.js, and .NET, and I enjoy bringing creative ideas to life through code.
+            </p>
+            <CvButton />
+          </motion.div>
+        </div>
+      </section>
 
       {/* About Section */}
-      {activeSection === 'about' && (
-        <section className="min-h-screen py-20 px-8 animate-fadeIn">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16 animate-fadeInUp">
-              <h2 className="text-4xl lg:text-5xl font-bold mb-4 dark:text-gray-300">
-                About <span className="text-orange-500">Me</span>
-              </h2>
-              <div className="w-24 h-1 bg-orange-500 mx-auto animate-expandWidth"></div>
-            </div>
+      <section id="about" ref={sectionRefs.about} className="min-h-screen py-20 px-8">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl lg:text-5xl font-bold mb-4 dark:text-gray-300">
+              About <span className="text-orange-500">Me</span>
+            </h2>
+            <div className="w-24 h-1 bg-orange-500 mx-auto"></div>
+          </motion.div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
-              {/* Left Side (Text Section) */}
-              <div className="space-y-6 animate-slideInLeft">
-                <h3 className="text-2xl font-semibold dark:text-orange-500">
-                  Information About Me
-                </h3>
-                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                  I am a Full-Stack Web Developer with 2+ years of experience in React.js, Next.js, TypeScript, and C# (ASP.NET). Skilled in building scalable web applications, I work with RESTful APIs, SQL databases, Azure services, Microsoft Graph APIs, and SignalR for real-time communication. I focus on writing clean, maintainable code and creating responsive, user-friendly interfaces that deliver excellent experiences.
-                </p>
-                <CvButton />
-              </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="space-y-6"
+            >
+              <h3 className="text-2xl font-semibold dark:text-orange-500">
+                Information About Me
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                I am a Full-Stack Web Developer with 2+ years of experience in React.js, Next.js, TypeScript, and C# (ASP.NET). Skilled in building scalable web applications, I work with RESTful APIs, SQL databases, Azure services, Microsoft Graph APIs, and SignalR for real-time communication. I focus on writing clean, maintainable code and creating responsive, user-friendly interfaces that deliver excellent experiences.
+              </p>
+              <CvButton />
+            </motion.div>
 
-              {/* Right Side (Image Section) */}
-              <div className="animate-slideInRight flex justify-center items-center">
-                <Image
-                  src="/assets/aboutMe.png"
-                  alt="Developer illustration"
-                  width={500}
-                  height={500}
-                  className="rounded-2xl object-cover hover:shadow-xl transition-shadow duration-500 hover:shadow-orange-500/20"
-                  priority
-                />
-              </div>
-            </div>
-
-
-            < Divider />
-            {/* Skills */}
-            <div className="mb-16">
-              <h3 className="text-2xl font-semibold mb-8 animate-fadeInUp dark:text-orange-500">My Skills</h3>
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-                {Skills.hard.map((item, index) => (
-
-
-                  <div key={index} className='p-6 shadow-xl rounded-xl hover:scale-105 ease-in duration-300 dark:bg-orange-500/5 flex animate-fadeIn animate-fadeInUp'>
-                    <div className='grid grid-cols-2 gap-4 justify-center items-center'>
-                      <div className='m-auto'>
-                        <Image src={item.icon} width='64' height='64' alt='' />
-                      </div>
-                      <div className='flex flex-col items-center justify-center  dark:text-gray-300'>
-                        <h3>{item.text}
-                        </h3>
-                      </div>
-                    </div>
-                  </div>
-
-                ))}
-              </div>
-            </div>
-            < Divider />
-
-            {/* Timeline */}
-            <div>
-              <h3 className="text-2xl font-semibold mb-8 animate-fadeInUp dark:text-orange-500">My Timeline</h3>
-              <div className="space-y-8">
-                {timeline.map((item, index) => (
-                  <div key={index} className="flex gap-6 animate-slideInLeft" style={{ animationDelay: `${index * 200}ms` }}>
-                    <div className="flex flex-col items-center">
-                      <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center  hover:animate-spin transition-all duration-300">
-                        <Briefcase className="w-6 h-6 text-white" />
-                      </div>
-                      {index < timeline.length - 1 && <div className="w-0.5 h-20 bg-gray-300 dark:bg-gray-600 mt-4 animate-growHeight"></div>}
-                    </div>
-                    <div className="flex-1 pb-2">
-                      <Badge variant="secondary" className="mb-2">{item.duration}</Badge>
-                      <h4 className="text-xl font-semibold mb-1 dark:text-gray-300">
-                        {item.title} <span className="text-orange-500 ">- {item.company}</span>
-                      </h4>
-                      <ul className="list-disc ml-6 mt-2 space-y-1 text-gray-700">
-                        {item.points.map((point, i) => (
-                          <li key={i}>{point}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="flex justify-center items-center"
+            >
+              <Image
+                src="/assets/aboutMe.png"
+                alt="Developer illustration"
+                width={500}
+                height={500}
+                className="rounded-2xl object-cover hover:shadow-xl transition-shadow duration-500 hover:shadow-orange-500/20"
+                priority
+              />
+            </motion.div>
           </div>
-        </section>
-      )
-      }
+
+
+          <Divider />
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="mb-16"
+          >
+            <h3 className="text-2xl font-semibold mb-8 dark:text-orange-500">My Skills</h3>
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+              {Skills.hard.map((item, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.4, delay: index * 0.05 }}
+                  viewport={{ once: true }}
+                  className='p-6 shadow-xl rounded-xl hover:scale-105 ease-in duration-300 dark:bg-orange-500/5 flex'
+                >
+                  <div className='grid grid-cols-2 gap-4 justify-center items-center'>
+                    <div className='m-auto'>
+                      <Image src={item.icon} width='64' height='64' alt='' />
+                    </div>
+                    <div className='flex flex-col items-center justify-center dark:text-gray-300'>
+                      <h3>{item.text}</h3>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          <Divider />
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <h3 className="text-2xl font-semibold mb-8 dark:text-orange-500">My Timeline</h3>
+            <div className="space-y-8">
+              {timeline.map((item, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: -50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.2 }}
+                  viewport={{ once: true }}
+                  className="flex gap-6"
+                >
+                  <div className="flex flex-col items-center">
+                    <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center hover:rotate-180 transition-all duration-300">
+                      <Briefcase className="w-6 h-6 text-white" />
+                    </div>
+                    {index < timeline.length - 1 && <div className="w-0.5 h-20 bg-gray-300 dark:bg-gray-600 mt-4"></div>}
+                  </div>
+                  <div className="flex-1 pb-2">
+                    <Badge variant="secondary" className="mb-2">{item.duration}</Badge>
+                    <h4 className="text-xl font-semibold mb-1 dark:text-gray-300">
+                      {item.title} <span className="text-orange-500">- {item.company}</span>
+                    </h4>
+                    <ul className="list-disc ml-6 mt-2 space-y-1 text-gray-700 dark:text-gray-300">
+                      {item.points.map((point, i) => (
+                        <li key={i}>{point}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
 
       {/* Portfolio Section */}
-      {
-        activeSection === 'portfolio' && (
-          <section className="min-h-screen py-20 px-8 animate-fadeIn h-full" id="portfolio">
-            <div className="max-w-6xl mx-auto">
-              <div className="text-center mb-16 animate-fadeInUp">
-                <h2 className="text-4xl lg:text-5xl font-bold mb-4 dark:text-gray-300">
-                  My <span className="text-orange-500">Portfolio</span>
-                </h2>
-                <div className="w-24 h-1 bg-orange-500 mx-auto mb-6 animate-expandWidth"></div>
-                <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-                  Here are some of my recent projects that showcase my skills in various programming languages and frameworks.
-                </p>
-              </div>
+      <section id="portfolio" ref={sectionRefs.portfolio} className="min-h-screen py-20 px-8">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl lg:text-5xl font-bold mb-4 dark:text-gray-300">
+              My <span className="text-orange-500">Portfolio</span>
+            </h2>
+            <div className="w-24 h-1 bg-orange-500 mx-auto mb-6"></div>
+            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+              Here are some of my recent projects that showcase my skills in various programming languages and frameworks.
+            </p>
+          </motion.div>
 
-              <div className="">
-                <div className="flex gap-6 flex-wrap justify-center lg:justify-start relative">
-                  {portfolioItems.map((item, index) => (
-                    <Card
-                      key={item.id}
-                      onClick={() => handleCardClick(item)}
-                      className="bg-orange-500 dark:bg-black relative w-full overflow-hidden cursor-pointer group rounded-xl shadow-md hover:shadow-xl transition-all duration-700 transform hover:-translate-y-2 hover:scale-105 opacity-0 animate-slideInLeft"
-                      style={{ animationDelay: `${index * 200}ms` }}
-                    >
+          <div className="flex gap-6 flex-wrap justify-center lg:justify-start relative">
+            {portfolioItems.map((item, index) => (
+              <motion.div
+                key={item.id}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="w-full"
+              >
+                <Card
+                  onClick={() => handleCardClick(item)}
+                  className="bg-orange-500 dark:bg-black relative w-full overflow-hidden cursor-pointer group rounded-xl shadow-md hover:shadow-xl transition-all duration-700 transform hover:-translate-y-2 hover:scale-105"
+                >
                       {/* Diagonal background using clip-path */}
                       <div className="absolute inset-0 bg-gradient-to-tr from-gray-600 via-gray-500 to-gray-300 dark:from-orange-600 dark:via-orange-500 dark:to-orange-300 clip-diagonal"></div>
 
@@ -268,12 +354,12 @@ export default function Portfolio() {
                             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                           />
                         </div>
-                      </div>
-                    </Card>
-                  ))}
+                  </div>
+                </Card>
+              </motion.div>
+            ))}
 
-
-                  {/* Right Drawer with AnimatePresence */}
+            {/* Right Drawer with AnimatePresence */}
                   <AnimatePresence>
                     {openDrawerId && selectedProject && (
                       <>
@@ -368,166 +454,163 @@ export default function Portfolio() {
                         </motion.div>
                       </>
                     )}
-                  </AnimatePresence>
-                </div>
-              </div>
-
-
-
-            </div>
-          </section>
-        )
-      }
+            </AnimatePresence>
+          </div>
+        </div>
+      </section>
 
       {/* Education Section */}
-      {
-        activeSection === 'education' && (
-          <section className="min-h-screen py-20 px-8 animate-fadeIn">
-            <div className="max-w-6xl mx-auto">
-              <div className="text-center mb-16 animate-fadeInUp">
-                <h2 className="text-4xl lg:text-5xl font-bold mb-4 dark:text-gray-300">
-                  My <span className="text-orange-500">Education</span>
-                </h2>
-                <div className="w-24 h-1 bg-orange-500 mx-auto animate-expandWidth"></div>
-              </div>
+      <section id="education" ref={sectionRefs.education} className="min-h-screen py-20 px-8">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl lg:text-5xl font-bold mb-4 dark:text-gray-300">
+              My <span className="text-orange-500">Education</span>
+            </h2>
+            <div className="w-24 h-1 bg-orange-500 mx-auto"></div>
+          </motion.div>
 
-
-
-              {/* Timeline */}
-              <div>
-                {/* Education Section */}
-                <div className="mb-12">
-                  <h4 className="text-xl font-semibold mb-6 text-orange-500">🎓 Education & 📜 Certifications</h4>
-                  <div className="relative border-l-2 border-orange-500 dark:border-orange-400 pl-6 space-y-10">
-                    {education.map((item, index) => (
-                      <div
-                        key={item.id}
-                        className="relative opacity-0 bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6 hover:shadow-xl transition-all duration-300 group animate-fadeInUp"
-                        style={{ animationDelay: `${index * 400}ms` }}
-                      >
-                        <Badge variant="secondary" className="mb-2">
-                          {item.year}
-                        </Badge>
-
-                        <h4 className="text-lg sm:text-xl font-semibold mb-1 dark:text-gray-200">
-                          {item.title}
-                        </h4>
-                        <p className="text-orange-500 font-medium">{item.institution}</p>
-                        <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                          {item.type === 1 ? "Education" : "Certification"}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
+          <div className="mb-12">
+            <motion.h4
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="text-xl font-semibold mb-6 text-orange-500"
+            >
+              🎓 Education & 📜 Certifications
+            </motion.h4>
+            <div className="relative border-l-2 border-orange-500 dark:border-orange-400 pl-6 space-y-10">
+              {education.map((item, index) => (
+                <motion.div
+                  key={item.id}
+                  initial={{ opacity: 0, x: -50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="relative bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6 hover:shadow-xl transition-all duration-300 group"
+                >
+                  <Badge variant="secondary" className="mb-2">
+                    {item.year}
+                  </Badge>
+                  <h4 className="text-lg sm:text-xl font-semibold mb-1 dark:text-gray-200">
+                    {item.title}
+                  </h4>
+                  <p className="text-orange-500 font-medium">{item.institution}</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                    {item.type === 1 ? "Education" : "Certification"}
+                  </p>
+                </motion.div>
+              ))}
             </div>
-            <div>
-
-            </div>
-          </section>
-          // <section className="min-h-screen py-20 px-8 animate-fadeIn">
-
-          //   <div className="max-w-6xl mx-auto">
-          //     <div className="text-center mb-16 animate-fadeInUp">
-          //       <h2 className="text-4xl lg:text-5xl font-bold mb-4">
-          //         My <span className="text-orange-500">Education</span>
-          //       </h2>
-          //       <div className="w-24 h-1 bg-orange-500 mx-auto animate-expandWidth"></div>
-          //     </div>
-
-          //     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          //       {blogs.map((blog, index) => (
-          //         <Card key={index} className="overflow-hidden hover:shadow-xl transition-all duration-500 transform hover:-translate-y-4 animate-fadeInUp hover:shadow-orange-500/20 hover:scale-105 group" style={{ animationDelay: `${index * 200}ms` }}>
-          //           <img
-          //             src={blog.image}
-          //             alt={blog.title}
-          //             className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
-          //           />
-          //           <CardContent className="p-6">
-          //             <h3 className="text-xl font-semibold mb-3 group-hover:text-orange-500 transition-colors duration-300">{blog.title}</h3>
-          //             <p className="text-gray-600 dark:text-gray-300 group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300">{blog.description}</p>
-          //           </CardContent>
-          //         </Card>
-          //       ))}
-          //     </div>
-          //   </div>
-          // </section>
-        )
-      }
+          </div>
+        </div>
+      </section>
 
       {/* Contact Section */}
-      {
-        activeSection === 'contact' && (
-          <section className="min-h-screen py-20 px-8 animate-fadeIn">
-            <div className="max-w-6xl mx-auto">
-              <div className="text-center mb-16 animate-fadeInUp">
-                <h2 className="text-4xl lg:text-5xl font-bold mb-4 dark:text-gray-300">
-                  Contact <span className="text-orange-500">Me</span>
-                </h2>
-                <div className="w-24 h-1 bg-orange-500 mx-auto animate-expandWidth"></div>
+      <section id="contact" ref={sectionRefs.contact} className="min-h-screen py-20 px-8">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl lg:text-5xl font-bold mb-4 dark:text-gray-300">
+              Contact <span className="text-orange-500">Me</span>
+            </h2>
+            <div className="w-24 h-1 bg-orange-500 mx-auto"></div>
+          </motion.div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="space-y-8"
+            >
+              <div>
+                <h3 className="text-2xl font-semibold mb-4 dark:text-orange-500">Get in touch</h3>
+                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                  I&apos;m always open to discussing new opportunities and interesting projects.
+                  Feel free to reach out if you&apos;d like to work together!
+                </p>
               </div>
 
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                <div className="space-y-8 animate-slideInLeft">
-                  <div>
-                    <h3 className="text-2xl font-semibold mb-4 dark:text-orange-500">Get in touch</h3>
-                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                      I&apos;m always open to discussing new opportunities and interesting projects.
-                      Feel free to reach out if you&apos;d like to work together!
-                    </p>
-                  </div>
+              <div className="space-y-4">
+                {[
+                  { icon: MapPin, label: 'Location', value: 'Lahore, Pakistan' },
+                  { icon: Mail, label: 'Email', value: 'hamza.hamid9055@gmail.com' },
+                  { icon: GraduationCap, label: 'Education', value: 'Computer Science Graduate' },
+                  { icon: Phone, label: 'Mobile', value: '+92 315 4287721' },
+                  { icon: Globe, label: 'Languages', value: 'English, Urdu' },
+                ].map((contact, index) => {
+                  const Icon = contact.icon;
+                  return (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, x: -30 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.4, delay: index * 0.1 }}
+                      viewport={{ once: true }}
+                      className="flex items-center gap-4 hover:scale-105 transition-transform duration-300"
+                    >
+                      <div className="w-10 h-10 bg-orange-500/20 rounded-full flex items-center justify-center hover:bg-orange-500/30 transition-colors duration-300 hover:rotate-12">
+                        <Icon className="w-5 h-5 text-orange-500" />
+                      </div>
+                      <div className='flex flex-wrap justify-between w-full'>
+                        <span className="font-medium dark:text-orange-500">{contact.label}: </span>
+                        <span className="text-gray-600 dark:text-gray-300">{contact.value}</span>
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </div>
 
-                  <div className="space-y-4">
-                    {[
-                      { icon: MapPin, label: 'Location', value: 'Lahore, Pakistan' },
-                      { icon: Mail, label: 'Email', value: 'hamza.hamid9055@gmail.com' },
-                      { icon: GraduationCap, label: 'Education', value: 'Computer Science Graduate' },
-                      { icon: Phone, label: 'Mobile', value: '+92 315 4287721' },
-                      { icon: Globe, label: 'Languages', value: 'English, Urdu' },
-                    ].map((contact, index) => {
-                      const Icon = contact.icon;
-                      return (
-                        <div key={index} className="flex opacity-0 items-center gap-4 animate-slideInLeft hover:scale-105 transition-transform duration-300" style={{ animationDelay: `${index * 200}ms` }}>
-                          <div className="w-10 h-10 bg-orange-500/20 rounded-full flex items-center justify-center hover:bg-orange-500/30 transition-colors duration-300 hover:rotate-12">
-                            <Icon className="w-5 h-5 text-orange-500" />
-                          </div>
-                          <div className='flex flex-wrap justify-between w-full'>
-                            <span className="font-medium dark:text-orange-500">{contact.label}: </span>
-                            <span className="text-gray-600 dark:text-gray-300">{contact.value}</span>
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
+              <div className="flex gap-4">
+                {[
+                  { icon: Twitter, href: 'https://x.com/hamzahamid09' },
+                  { icon: Github, href: 'https://github.com/hamza9055' },
+                  { icon: Linkedin, href: 'https://www.linkedin.com/in/hamza-hamid9055/' },
+                  { icon: Codepen, href: 'https://codepen.io/hamza9055' },
+                ].map((social, index) => {
+                  const Icon = social.icon;
+                  return (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, scale: 0.5 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.4, delay: index * 0.1 }}
+                      viewport={{ once: true }}
+                    >
+                      <Button
+                        variant="outline"
+                        size="icon"
+                        className="w-12 h-12 rounded-full dark:bg-orange-500 hover:bg-orange-500 hover:text-white hover:border-orange-500 transition-all duration-300 hover:scale-110 hover:rotate-12"
+                        onClick={() => window.open(social.href, '_blank')}
+                      >
+                        <Icon className="w-5 h-5" />
+                      </Button>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            </motion.div>
 
-                  <div className="flex gap-4">
-                    {[
-                      // { icon: Facebook, href: '#' },
-                      { icon: Twitter, href: 'https://x.com/hamzahamid09' },
-                      { icon: Github, href: 'https://github.com/hamza9055' },
-                      { icon: Linkedin, href: 'https://www.linkedin.com/in/hamza-hamid9055/' },
-                      { icon: Codepen, href: 'https://codepen.io/hamza9055' },
-                    ].map((social, index) => {
-                      const Icon = social.icon;
-                      return (
-                        <Button
-                          key={index}
-                          variant="outline"
-                          size="icon"
-                          className="w-12 h-12 rounded-full dark:bg-orange-500 hover:bg-orange-500 hover:text-white opacity-0 hover:border-orange-500 transition-all duration-300 hover:scale-110 hover:rotate-12 animate-fadeInUp"
-                          style={{ animationDelay: `${index * 200}ms` }}
-                          onClick={() => window.open(social.href, '_blank')}
-                        >
-                          <Icon className="w-5 h-5" />
-                        </Button>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                <Card className="p-8 animate-slideInRight hover:shadow-xl transition-shadow duration-500 hover:shadow-orange-500/20">
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              <Card className="p-8 hover:shadow-xl transition-shadow duration-500 hover:shadow-orange-500/20 relative overflow-hidden">
                   {/* <form className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <Input placeholder="Your Name" className="h-12 focus:scale-105 transition-transform duration-300" />
@@ -539,19 +622,18 @@ export default function Portfolio() {
                       Send Message
                     </Button>
                   </form> */}
-                  <Image
-                    className="absolute z-1"
-                    src={'/assets/contact.png'}
-                    alt={'/assets/dev.png'}
-                    fill
-                    style={{ objectFit: "cover" }}
-                  />
-                </Card>
-              </div>
-            </div>
-          </section>
-        )
-      }
-    </div >
+                <Image
+                  className="absolute z-1"
+                  src={'/assets/contact.png'}
+                  alt={'/assets/dev.png'}
+                  fill
+                  style={{ objectFit: "cover" }}
+                />
+              </Card>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+    </div>
   );
 }

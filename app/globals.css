@@ -81,148 +81,37 @@
   }
   body {
     @apply bg-background text-foreground;
+    /* prevent horizontal overflow on all screen sizes */
+    overflow-x: hidden;
   }
 }
 
-/* Custom Animations */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
+/* ─── Custom Animations ───────────────────────────────────────── */
+@keyframes fadeIn        { from { opacity: 0 }                              to { opacity: 1 } }
+@keyframes fadeInUp      { from { opacity: 0; transform: translateY(30px) } to { opacity: 1; transform: translateY(0) } }
+@keyframes slideInLeft   { from { opacity: 0; transform: translateX(-50px) } to { opacity: 1; transform: translateX(0) } }
+@keyframes slideInRight  { from { opacity: 0; transform: translateX(50px) }  to { opacity: 1; transform: translateX(0) } }
+@keyframes expandWidth   { from { width: 0 }    to { width: 6rem } }
+@keyframes fillProgress  { from { width: 0 } }
+@keyframes growHeight    { from { height: 0 }   to { height: 4rem } }
+@keyframes typewriter    { from { width: 0 }    to { width: 100% } }
+@keyframes countUp       { from { transform: scale(0.5); opacity: 0 } to { transform: scale(1); opacity: 1 } }
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+.animate-fadeIn       { animation: fadeIn       0.8s ease-out forwards; }
+.animate-fadeInUp     { animation: fadeInUp     0.8s ease-out forwards; }
+.animate-slideInLeft  { animation: slideInLeft  0.8s ease-out forwards; }
+.animate-slideInRight { animation: slideInRight 0.8s ease-out forwards; }
+.animate-expandWidth  { animation: expandWidth  1s   ease-out forwards; }
+.animate-fillProgress { animation: fillProgress 2s   ease-out forwards; }
+.animate-growHeight   { animation: growHeight   1s   ease-out forwards; }
+.animate-typewriter   { animation: typewriter   2s   steps(20) forwards; }
+.animate-countUp      { animation: countUp      0.6s ease-out forwards; }
 
-@keyframes slideInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
+.animation-delay-300 { animation-delay: 300ms; }
+.animation-delay-500 { animation-delay: 500ms; }
 
-@keyframes slideInRight {
-  from {
-    opacity: 0;
-    transform: translateX(50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
+.hover\:animate-spin:hover { animation: spin 1s linear infinite; }
 
-@keyframes expandWidth {
-  from {
-    width: 0;
-  }
-  to {
-    width: 6rem;
-  }
-}
-
-@keyframes fillProgress {
-  from {
-    width: 0;
-  }
-}
-
-@keyframes growHeight {
-  from {
-    height: 0;
-  }
-  to {
-    height: 4rem;
-  }
-}
-
-@keyframes typewriter {
-  from {
-    width: 0;
-  }
-  to {
-    width: 100%;
-  }
-}
-
-@keyframes countUp {
-  from {
-    transform: scale(0.5);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-/* Animation Classes */
-.animate-fadeIn {
-  animation: fadeIn 0.8s ease-out forwards;
-}
-
-.animate-fadeInUp {
-  animation: fadeInUp 0.8s ease-out forwards;
-}
-
-.animate-slideInLeft {
-  animation: slideInLeft 0.8s ease-out forwards;
-}
-
-.animate-slideInRight {
-  animation: slideInRight 0.8s ease-out forwards;
-}
-
-.animate-expandWidth {
-  animation: expandWidth 1s ease-out forwards;
-}
-
-.animate-fillProgress {
-  animation: fillProgress 2s ease-out forwards;
-}
-
-.animate-growHeight {
-  animation: growHeight 1s ease-out forwards;
-}
-
-.animate-typewriter {
-  animation: typewriter 2s steps(20) forwards;
-}
-
-.animate-countUp {
-  animation: countUp 0.6s ease-out forwards;
-}
-
-/* Animation Delays */
-.animation-delay-300 {
-  animation-delay: 300ms;
-}
-
-.animation-delay-500 {
-  animation-delay: 500ms;
-}
-
-/* Hover Animations */
-.hover\:animate-spin:hover {
-  animation: spin 1s linear infinite;
-}
-
-/* Responsive Animation Adjustments */
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;
@@ -231,33 +120,82 @@
   }
 }
 
+/* ─── Custom Scrollbar ────────────────────────────────────────── */
+.custom-scrollbar::-webkit-scrollbar        { width: 10px; direction: rtl; }
+.custom-scrollbar > *                       { direction: ltr; }
+.custom-scrollbar::-webkit-scrollbar-track  { background: transparent; }
+.custom-scrollbar::-webkit-scrollbar-thumb  { background-color: rgba(48,47,47,0); border-radius: 9999px; border: 2px solid transparent; }
+.custom-scrollbar::-webkit-scrollbar-thumb:hover { background-color: rgb(255 255 255 / var(--tw-bg-opacity)); }
 
-/* Custom Scrollbar */
-.custom-scrollbar::-webkit-scrollbar {
-  width: 10px; /* thickness */
-  direction: rtl;
-}
-.custom-scrollbar > * {
-  direction: ltr; /* Restore content direction */
-}
-
-.custom-scrollbar::-webkit-scrollbar-track {
-  background: transparent; /* track color */
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb {
-background-color: rgba(48, 47, 47, 0) /* #ffffff */;  
-  border-radius: 9999px;
-  border: 2px solid transparent;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
-background-color: rgb(255 255 255 / var(--tw-bg-opacity)) /* #ffffff */;
-}
-.clip-diagonal {
-  clip-path: polygon(0 0, 70% 0, 100% 100%, 30% 100%);
-}
+/* ─── Portfolio Card Diagonal ─────────────────────────────────── */
+.clip-diagonal { clip-path: polygon(0 0, 70% 0, 100% 100%, 30% 100%); }
 .group:hover .clip-diagonal {
   clip-path: polygon(0 0, 55% 0, 65% 100%, 0% 100%);
   transition: clip-path 0.6s ease-in-out;
+}
+
+/* ─── Responsive: right-side nav dots ─────────────────────────── */
+/* On very small screens push nav dots closer to edge */
+@media (max-width: 640px) {
+  .nav-dots-fixed {
+    right: 0.75rem !important;
+    gap: 0.5rem !important;
+  }
+  .theme-toggle-fixed {
+    top: 0.75rem !important;
+    right: 0.75rem !important;
+  }
+}
+
+/* ─── Responsive: portfolio drawer ────────────────────────────── */
+/* Make drawer full-width on mobile */
+@media (max-width: 640px) {
+  .project-drawer {
+    width: 100% !important;
+    max-width: 100% !important;
+    border-radius: 0 !important;
+  }
+}
+
+/* ─── Responsive: home section portrait image ─────────────────── */
+@media (max-width: 1023px) {
+  .hero-image {
+    width: 200px !important;
+    height: 200px !important;
+  }
+}
+
+/* ─── Responsive: section horizontal padding ──────────────────── */
+@media (max-width: 640px) {
+  .section-px {
+    padding-left: 1.25rem  !important;
+    padding-right: 1.25rem !important;
+  }
+}
+
+/* ─── Responsive: portfolio card height on mobile ─────────────── */
+@media (max-width: 480px) {
+  .portfolio-card-inner {
+    height: auto   !important;
+    min-height: 9rem;
+  }
+  .portfolio-card-inner .card-text-side {
+    padding-left: 1rem !important;
+    padding-right: 0.75rem !important;
+  }
+}
+
+/* ─── Responsive: skill grid 2-col on xs ──────────────────────── */
+@media (max-width: 480px) {
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1rem !important;
+  }
+}
+
+/* ─── Responsive: contact info wrap ───────────────────────────── */
+@media (max-width: 400px) {
+  .contact-info-row span {
+    font-size: 0.75rem;
+  }
 }

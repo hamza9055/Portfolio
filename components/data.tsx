@@ -3,94 +3,130 @@ export const Skills = {
         {
             id: 1,
             icon: "/assets/skills/html.png",
-            text: "Html"
+            text: "Html",
+            label: "Frontend"
         },
         {
             id: 2,
             icon: "/assets/skills/css.png",
-            text: "Css"
+            text: "Css",
+            label: "Frontend"
         },
         {
             id: 3,
 
             icon: "/assets/skills/javascript.png",
-            text: "JavaScript"
+            text: "JavaScript",
+            label: "Frontend"
         },
         {
             id: 4,
 
             icon: "/assets/skills/react.png",
-            text: "React"
+            text: "React",
+            label: "Frontend"
         },
         {
             id: 5,
 
             icon: "/assets/skills/tailwind.png",
-            text: "Tailwind"
+            text: "Tailwind",
+            label: "Frontend"
         },
         {
             id: 6,
 
             icon: "/assets/skills/github1.png",
-            text: "Githb"
+            text: "GitHub",
+            label: "Cloud & Tools"
         },
         {
             id: 7,
             icon: "/assets/skills/typescript.png",
-            text: "TypeScript"
+            text: "TypeScript",
+            label: "Frontend"
+
         },
         {
             id: 8,
 
             icon: "/assets/skills/nextjs.png",
-            text: "Next"
+            text: "Next.js",
+            label: "Frontend"
         },
         {
             id: 9,
             icon: "/assets/skills/c.png",
-            text: "C#"
+            text: "C#",
+            label: "Backend"
         },
 
         {
             id: 10,
             icon: "/assets/skills/antDesign.png",
-            text: "Ant Design"
+            text: "Ant Design",
+            label: "Frontend"
         },
         {
             id: 11,
             icon: "/assets/skills/sass.png",
-            text: "Sass"
+            text: "Sass",
+            label: "Frontend"
         },
         {
             id: 12,
             icon: "/assets/skills/azure.png",
-            text: "Azure"
+            text: "Azure",
+            label: "Cloud & Tools"
         },
         {
             id: 13,
             icon: "/assets/skills/rest-api.png",
-            text: "REST APis"
+            text: "REST APis",
+            label: "Backend"
         },
         {
             id: 14,
             icon: "/assets/skills/sql.png",
-            text: "SQL Server"
+            text: "SQL Server",
+            label: "Backend"
         },
         {
             id: 15,
             icon: "/assets/skills/net.png",
-            text: "ASP.NET"
+            text: "ASP.NET",
+            label: "Backend"
         },
         {
             id: 16,
             icon: "/assets/skills/node.png",
-            text: "Node js"
+            text: "Node js",
+            label: "Backend"
         },
         {
             id: 17,
             icon: "/assets/skills/mongo.png",
-            text: "MondoDB"
-        }
+            text: "MondoDB",
+            label: "Backend"
+        },
+        {
+            id: 18,
+            icon: "/assets/skills/docker.png",
+            text: "Docker",
+            label: "Cloud & Tools"
+        },
+        {
+            id: 19,
+            icon: "/assets/skills/figma.png",
+            text: "Figma",
+            label: "Cloud & Tools"
+        },
+        {
+            id: 20,
+            icon: "/assets/skills/signalr.png",
+            text: "SignalR",
+            label: "Backend"
+        },
 
     ],
 
@@ -180,6 +216,7 @@ export const portfolioItems = [
         image: '/assets/projects/registo.png',
         link: "https://registo.no/",
         github: "",
+        decImage: '/assets/projects/registo.png',
         description: "A full-featured accounting task management platform designed for accounting firms and their clients. Developed a scalable, multi-tenant system with secure authentication, client-specific workflows, automated task scheduling (VAT, payroll), and digital contract signing.",
         technologies: ["React", "TypeScript", "C#", ".NET", "SQL Server", "Ant Design", "Sass", "Azure", "REST APIs", 'SignalR', 'Azure Blob Storage'],
         points: [
@@ -202,6 +239,7 @@ export const portfolioItems = [
         image: '/assets/projects/equinet.png',
         link: "https://equinet.no/",
         github: "",
+        decImage: '/assets/projects/equinet.png',
         description: "'A web platform that connects horse trainers, riding schools, and students. Built a complete scheduling, management, and payment system enabling trainers and students to interact efficiently with role-based dashboards.",
         technologies: ["React", "TypeScript", "C#", ".NET", "SQL Server", "Ant Design", "Sass", "Azure", "REST APIs"],
         points: [
@@ -224,6 +262,7 @@ export const portfolioItems = [
         image: '/assets/projects/talkit.png',
         link: 'https://talkit-frontend-cpe0cyadafd7f7hf.norwayeast-01.azurewebsites.net/',
         github: '',
+        decImage: '/assets/projects/talkit.png',
         description:
             'A real-time communication tool for doctors and patients. Designed and developed modern UI components and smooth animations using Next.js and Tailwind CSS. Integrated the login API using BankID for secure authentication and connected the project with Azure Pipeline for CI/CD deployment.',
         technologies: [
@@ -249,6 +288,7 @@ export const portfolioItems = [
         image: '/assets/projects/ittrends.png',
         link: "https://www.ittrends.no/",
         github: "",
+        decImage: '/assets/projects/ittrends.png',
         description: "Corporate website for an IT services firm, built to showcase offerings, portfolio, and company information. Focused on responsive UI, professional design, and smooth animations for a strong brand presence.",
         technologies: ["HTML", "CSS", "JavaScript", "Bootstrap", "Tiny Slider"],
         points: [
@@ -267,6 +307,7 @@ export const portfolioItems = [
         image: '/assets/projects/plusnor1.png',
         link: "https://plusnor.no/",
         github: "",
+        decImage: '/assets/projects/plusnor1.png',
         description: "Corporate website for an accounting firm, designed to build client trust and highlight professional services. Fully responsive with modern animations and a polished UI to enhance brand credibility.",
         technologies: ["HTML", "CSS", "JavaScript", "Bootstrap", "Tiny Slider"],
         points: [
@@ -285,6 +326,7 @@ export const portfolioItems = [
         image: '/assets/projects/uniweb.png',
         link: 'https://university-website.vercel.app/',
         github: 'https://github.com/hamza9055/university-website',
+        decImage: '/assets/projects/uniweb.png',
         description:
             'A personal frontend project built to practice modern UI design and responsive web development. Features course details and faculty profiles, created with pure HTML, CSS, and JavaScript.',
         technologies: ['HTML', 'CSS', 'JavaScript'],
@@ -294,8 +336,32 @@ export const portfolioItems = [
             'Custom animations and transitions',
             'Optimized for performance and accessibility',
         ],
-    }
-
+    },
+    {
+        id: 6,
+        category: 'Professional',
+        slug: 'travelcrm',
+        title: 'TravelCRM Pro',
+        image: '/assets/projects/travelcrm.png',   // add a screenshot here
+        link: 'http://45.13.59.221/',                                   // add deployed URL if any
+        github: 'https://github.com/hamza9055/TravelCRM',
+        decImage: '/assets/projects/travelcrm1.png',
+        description: 'A full-stack travel agency operations suite for managing inquiries, bookings, vendors, teams, and finance. Built with React/TypeScript on the frontend and ASP.NET Core 8 on the backend, featuring role-based access control, real-time Excel export, and a responsive command-center dashboard.',
+        technologies: [
+            'React', 'TypeScript', 'Vite', 'shadcn/ui', 'Tailwind CSS',
+            'C#', 'ASP.NET Core 8', 'SQL Server', 'ExcelJS', 'REST APIs',
+        ],
+        points: [
+            'Role-based access control: SuperAdmin, Admin, Manager, Agent',
+            'Multi-company support with company switcher in sidebar',
+            'Full booking lifecycle: inquiry → booking → invoice PDF',
+            'Vendor management with financial settlement tracking (PKR)',
+            'Finance dashboard with revenue, collection-rate & profit charts',
+            'One-click Excel export: overview, bookings, inquiries, agent performance, payments, monthly flights',
+            'Real-time flight tracker showing this-month departures',
+            'Responsive layout with mobile sidebar toggle',
+        ],
+    },
 
     // {
     //     id: 6,

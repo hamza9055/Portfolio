@@ -826,9 +826,9 @@ export default function Portfolio() {
       {/* ════════════ EDUCATION ════════════ */}
       <section
         id="education" ref={sectionRefs.education}
-        className="relative min-h-screen py-24 sm:py-32 px-6 sm:px-12"
-      >
-        <span className="section-number">04</span>
+        className="relative min-h-screen py-24 sm:py-32 px-6 sm:px-14 overflow-hidden">
+         <div className="orb w-[320px] h-[320px] bg-orange-500/6 bottom-0 left-1/2 -translate-x-1/2 z-0" />
+        <span className="sn">04</span>
         <div className="relative z-10 max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
